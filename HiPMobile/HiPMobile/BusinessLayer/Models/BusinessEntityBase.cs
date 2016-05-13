@@ -9,13 +9,12 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 {
     public abstract class BusinessEntityBase
     {
-        public BusinessEntityBase()
-        {
-        }
-        // we need ID, so be able to genericly access DB from data layer
+        /// <summary>
+        /// Id for identifying BusinessObjects. The Id must be unique amon other objects of the same type.
+        /// </summary>
         [PrimaryKey, AutoIncrement]
-        public int ID { get; set; }
+        public int Id { get; set; }
 
-
+        public BusinessEntityBase() { }
     }
 }

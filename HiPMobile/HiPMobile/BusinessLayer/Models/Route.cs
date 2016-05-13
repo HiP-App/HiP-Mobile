@@ -47,8 +47,6 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
             ImageName = imageName;
         }
 
- 
-
         public string Description { get; set; }
         public double Distance { get; set; } //in km
         public int Duration { get; set; } //in seconds

@@ -39,6 +39,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
             Tags = tags.Split (',');
         }
 
+        public Exhibit() { }
 
         //changes member names of the class
 
