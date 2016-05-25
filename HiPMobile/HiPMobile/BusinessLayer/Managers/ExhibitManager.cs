@@ -13,13 +13,13 @@
 // limitations under the License.
 
 using System.Collections.Generic;
-using de.upb.hip.mobile.pcl.BusinessLayer.Contracts;
+//using de.upb.hip.mobile.pcl.BusinessLayer.Contracts;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.DataAccessLayer;
 using Microsoft.Practices.Unity;
 
-namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
+/*namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
     public class ExhibitManager : IExhibitManager {
 
         private IDataAccess dataAccess;
@@ -59,4 +59,4 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
         }
 
     }
-}
+}*/

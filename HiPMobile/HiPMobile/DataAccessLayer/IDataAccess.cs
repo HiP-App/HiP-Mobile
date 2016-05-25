@@ -16,42 +16,36 @@
 
 using System.Collections.Generic;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using Realms;
 
 namespace de.upb.hip.mobile.pcl.DataAccessLayer {
-
     /// <summary>
-    /// The interface describing the access to the data layer.
+    ///     The interface describing the access to the data layer.
     /// </summary>
     public interface IDataAccess {
 
         /// <summary>
-        /// Gets an item with the given key from the database.
+        ///     Gets an item with the given key from the database.
         /// </summary>
         /// <typeparam name="T">The type of the item being retrived. It has to be a subtype of BusinessEntityBase.</typeparam>
-        /// <param name="key">The key of the item.</param>
+        /// <param name="id">The key of the item.</param>
         /// <returns>The item if it exists, null otherwise.</returns>
-        T GetItem<T> (int key) where T : BusinessEntityBase, new ();
+        T GetItem<T> (string id) where T : RealmObject, IIdentifiable;
 
         /// <summary>
-        /// Gets an enumeration of items from the database.
+        ///     Gets an enumeration of items from the database.
         /// </summary>
         /// <typeparam name="T">The type of the items being retrived. It has to be a subtype of BusinessEntityBase.</typeparam>
         /// <returns>The enumerable of items.</returns>
-        IEnumerable<T> GetItems<T> () where T : BusinessEntityBase, new();
+        IEnumerable<T> GetItems<T> () where T : RealmObject, IIdentifiable;
+
 
         /// <summary>
-        /// Saves an item to the database. If the item already exists, its values are updated. Otherwise a new entry is created.
+        ///     Deletes an item from the database. Id the item doesn't exists, nothing is changed.
         /// </summary>
-        /// <param name="item">The item to be saved.</param>
-        /// <returns>The Id of the saved item.</returns>
-        int SaveItem (BusinessEntityBase item);
-
-        /// <summary>
-        /// Deletes an item from the database. Id the item doesn't exists, nothing is changed.
-        /// </summary>
-        /// <param name="item">The item to be deleted.</param>
+        /// <param name="id">The item to be deleted.</param>
         /// <returns>True if deletion was successfull, False otherwise.</returns>
-        bool DeleteItem (BusinessEntityBase item);
+        bool DeleteItem<T> (string id) where T : RealmObject, IIdentifiable;
 
     }
 }

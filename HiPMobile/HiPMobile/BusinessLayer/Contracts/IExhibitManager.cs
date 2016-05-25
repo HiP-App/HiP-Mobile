@@ -13,41 +13,39 @@
 // limitations under the License.
 
 using System.Collections.Generic;
-using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 
-namespace de.upb.hip.mobile.pcl.BusinessLayer.Contracts {
-
+/*namespace de.upb.hip.mobile.pcl.BusinessLayer.Contracts {
     /// <summary>
-    /// Interface defining standard operations for the Exhibit Manager.
+    ///     Interface defining standard operations for the Exhibit Manager.
     /// </summary>
     public interface IExhibitManager {
 
         /// <summary>
-        /// Gets an exhibit with the given key.
+        ///     Gets an exhibit with the given key.
         /// </summary>
         /// <param name="key">The key of the exhibit.</param>
         /// <returns>The exhibit if it exists, null otherwise.</returns>
         Exhibit GetExhibit (int key);
 
         /// <summary>
-        /// Gets all available exhibits.
+        ///     Gets all available exhibits.
         /// </summary>
         /// <returns>An enumeration of all exhibits.</returns>
         IEnumerable<Exhibit> GetExhibits ();
 
         /// <summary>
-        /// Save the exhibit.
+        ///     Save the exhibit.
         /// </summary>
         /// <param name="exhibit">The exhibit to be saved.</param>
         /// <returns>The id of the exhibit.</returns>
         int SaveExhibit (Exhibit exhibit);
 
         /// <summary>
-        /// Delete the exhibit.
+        ///     Delete the exhibit.
         /// </summary>
         /// <param name="exhibit">The exhibit to be deleted.</param>
         /// <returns>True, if deletion was successfull, false otherwise.</returns>
         bool DeleteExhibit (Exhibit exhibit);
 
     }
-}
+}*/
