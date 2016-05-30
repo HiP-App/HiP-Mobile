@@ -33,11 +33,9 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="BusinessLayer\Models\IIdentifiable.cs" />
     <Compile Include="DataAccessLayer\IDataAccess.cs" />
     <Compile Include="DataLayer\RealmDataAccess.cs" />
     <Compile Include="Common\IoCManager.cs" />
-    <Compile Include="Common\Contracts\ISettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -60,6 +58,8 @@
   <ItemGroup>
     <Folder Include="BusinessLayer\Contracts\" />
     <Folder Include="BusinessLayer\Managers\" />
+    <Folder Include="BusinessLayer\Models\" />
+    <Folder Include="Common\Contracts\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="FodyWeavers.xml" />

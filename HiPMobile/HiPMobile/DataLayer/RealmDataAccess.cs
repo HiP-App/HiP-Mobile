@@ -22,7 +22,7 @@ using Realms;
 
 namespace de.upb.hip.mobile.pcl.DataLayer {
     /// <summary>
-    ///     Class encapsulating the access to the SQLite database.
+    ///     Class encapsulating the access to the Realm Database
     /// </summary>
     internal class RealmDataAccess : IDataAccess {
 
