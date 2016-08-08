@@ -21,6 +21,7 @@ using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.DataAccessLayer;
 using de.upb.hip.mobile.pcl.DataLayer;
+using HockeyApp;
 using Microsoft.Practices.Unity;
 using Realms;
 
@@ -63,7 +64,9 @@ namespace de.upb.hip.mobile.droid.Activities {
                 });  
             });
 
-            
+            // make HockeyApp feedback available
+            FeedbackManager.Register (ApplicationContext, "9947e2434fe64d318214cfc6972d4800")
+
         }
 
 
