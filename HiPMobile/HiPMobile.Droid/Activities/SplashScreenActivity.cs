@@ -65,7 +65,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             });
 
             // make HockeyApp feedback available
-            FeedbackManager.Register (ApplicationContext, "9947e2434fe64d318214cfc6972d4800")
+            FeedbackManager.Register (ApplicationContext);
 
         }
 
