@@ -138,10 +138,10 @@ limitations under the License.-->
 
   <string name="source_substitute">[Quelle]</string>
 
-  <string-array name="nav_drawer_entries">
-    <item>Übersicht</item>
-    <item>Routen</item>
-    <item>@string/licensing_title</item>
-  </string-array>
+  <!-- Navigation drawer items -->
+  <string name="nav_home">Übersicht</string>
+  <string name="nav_routes">Routen</string>
+  <string name="nav_licenses">Lizenzen</string>
+  <string name="nav_feedback">Feedback</string>
 
 </resources>

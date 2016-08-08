@@ -89,22 +89,6 @@ namespace de.upb.hip.mobile.droid
 			}
 		}
 		
-		public partial class Array
-		{
-			
-			// aapt resource value: 0x7f0d0000
-			public const int nav_drawer_entries = 2131558400;
-			
-			static Array()
-			{
-				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
-			}
-			
-			private Array()
-			{
-			}
-		}
-		
 		public partial class Attribute
 		{
 			
@@ -1946,52 +1930,55 @@ namespace de.upb.hip.mobile.droid
 			public const int ic_expand_more_white_48dp = 2130837592;
 			
 			// aapt resource value: 0x7f020059
-			public const int ic_filter_list_white_48dp = 2130837593;
+			public const int ic_feedback_black_24dp = 2130837593;
 			
 			// aapt resource value: 0x7f02005a
-			public const int ic_gavel_black_48dp = 2130837594;
+			public const int ic_filter_list_white_48dp = 2130837594;
 			
 			// aapt resource value: 0x7f02005b
-			public const int ic_headset_white_24dp = 2130837595;
+			public const int ic_gavel_black_48dp = 2130837595;
 			
 			// aapt resource value: 0x7f02005c
-			public const int ic_home_black_48dp = 2130837596;
+			public const int ic_headset_white_24dp = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
-			public const int ic_launcher = 2130837597;
+			public const int ic_home_black_48dp = 2130837597;
 			
 			// aapt resource value: 0x7f02005e
-			public const int ic_pause_black_36dp = 2130837598;
+			public const int ic_launcher = 2130837598;
 			
 			// aapt resource value: 0x7f02005f
-			public const int ic_play_arrow_black_36dp = 2130837599;
+			public const int ic_pause_black_36dp = 2130837599;
 			
 			// aapt resource value: 0x7f020060
-			public const int Icon = 2130837600;
+			public const int ic_play_arrow_black_36dp = 2130837600;
 			
 			// aapt resource value: 0x7f020061
-			public const int kaiserpfalz_teaser = 2130837601;
+			public const int Icon = 2130837601;
 			
 			// aapt resource value: 0x7f020062
-			public const int marker_blue = 2130837602;
+			public const int kaiserpfalz_teaser = 2130837602;
 			
 			// aapt resource value: 0x7f020063
-			public const int marker_departure = 2130837603;
+			public const int marker_blue = 2130837603;
 			
 			// aapt resource value: 0x7f020064
-			public const int marker_destination = 2130837604;
+			public const int marker_departure = 2130837604;
 			
 			// aapt resource value: 0x7f020065
-			public const int marker_via = 2130837605;
-			
-			// aapt resource value: 0x7f020067
-			public const int notification_template_icon_bg = 2130837607;
-			
-			// aapt resource value: 0x7f020068
-			public const int semitransparent_gray = 2130837608;
+			public const int marker_destination = 2130837605;
 			
 			// aapt resource value: 0x7f020066
-			public const int thumb = 2130837606;
+			public const int marker_via = 2130837606;
+			
+			// aapt resource value: 0x7f020068
+			public const int notification_template_icon_bg = 2130837608;
+			
+			// aapt resource value: 0x7f020069
+			public const int semitransparent_gray = 2130837609;
+			
+			// aapt resource value: 0x7f020067
+			public const int thumb = 2130837607;
 			
 			static Drawable()
 			{
@@ -2392,6 +2379,9 @@ namespace de.upb.hip.mobile.droid
 			
 			// aapt resource value: 0x7f060016
 			public const int multiply = 2131099670;
+			
+			// aapt resource value: 0x7f0600e0
+			public const int nav_feedback = 2131099872;
 			
 			// aapt resource value: 0x7f0600dd
 			public const int nav_home = 2131099869;
@@ -2969,14 +2959,14 @@ namespace de.upb.hip.mobile.droid
 		public partial class Menu
 		{
 			
-			// aapt resource value: 0x7f0e0000
-			public const int activity_exhibit_details_menu_main = 2131623936;
+			// aapt resource value: 0x7f0d0000
+			public const int activity_exhibit_details_menu_main = 2131558400;
 			
-			// aapt resource value: 0x7f0e0001
-			public const int activity_route_menu = 2131623937;
+			// aapt resource value: 0x7f0d0001
+			public const int activity_route_menu = 2131558401;
 			
-			// aapt resource value: 0x7f0e0002
-			public const int NavMenu = 2131623938;
+			// aapt resource value: 0x7f0d0002
+			public const int NavMenu = 2131558402;
 			
 			static Menu()
 			{
@@ -3064,11 +3054,11 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f070012
 			public const int abc_toolbar_collapse_description = 2131165202;
 			
-			// aapt resource value: 0x7f070098
-			public const int action_audio = 2131165336;
+			// aapt resource value: 0x7f07009a
+			public const int action_audio = 2131165338;
 			
-			// aapt resource value: 0x7f0700a0
-			public const int after_christ = 2131165344;
+			// aapt resource value: 0x7f0700a2
+			public const int after_christ = 2131165346;
 			
 			// aapt resource value: 0x7f07005e
 			public const int app_name = 2131165278;
@@ -3076,20 +3066,20 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f070014
 			public const int appbar_scrolling_view_behavior = 2131165204;
 			
-			// aapt resource value: 0x7f07009f
-			public const int audio_pausing_indicator = 2131165343;
+			// aapt resource value: 0x7f0700a1
+			public const int audio_pausing_indicator = 2131165345;
 			
-			// aapt resource value: 0x7f07009e
-			public const int audio_playing_indicator = 2131165342;
+			// aapt resource value: 0x7f0700a0
+			public const int audio_playing_indicator = 2131165344;
+			
+			// aapt resource value: 0x7f07009d
+			public const int audio_toolbar_cc = 2131165341;
 			
 			// aapt resource value: 0x7f07009b
-			public const int audio_toolbar_cc = 2131165339;
+			public const int audio_toolbar_play_pause = 2131165339;
 			
-			// aapt resource value: 0x7f070099
-			public const int audio_toolbar_play_pause = 2131165337;
-			
-			// aapt resource value: 0x7f07009a
-			public const int audio_toolbar_progress = 2131165338;
+			// aapt resource value: 0x7f07009c
+			public const int audio_toolbar_progress = 2131165340;
 			
 			// aapt resource value: 0x7f070015
 			public const int bottom_sheet_behavior = 2131165205;
@@ -3100,14 +3090,14 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f070016
 			public const int character_counter_pattern = 2131165206;
 			
-			// aapt resource value: 0x7f07009d
-			public const int close = 2131165341;
+			// aapt resource value: 0x7f07009f
+			public const int close = 2131165343;
 			
 			// aapt resource value: 0x7f070082
 			public const int creating_map = 2131165314;
 			
-			// aapt resource value: 0x7f0700a3
-			public const int currently_no_further_info = 2131165347;
+			// aapt resource value: 0x7f0700a5
+			public const int currently_no_further_info = 2131165349;
 			
 			// aapt resource value: 0x7f070077
 			public const int departure = 2131165303;
@@ -3127,8 +3117,8 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f07007f
 			public const int empty_route = 2131165311;
 			
-			// aapt resource value: 0x7f0700a1
-			public const int fragment_exhibitpage_image_button_text = 2131165345;
+			// aapt resource value: 0x7f0700a3
+			public const int fragment_exhibitpage_image_button_text = 2131165347;
 			
 			// aapt resource value: 0x7f070088
 			public const int gps_not_enabled_message = 2131165320;
@@ -3349,8 +3339,8 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f07005d
 			public const int hockeyapp_update_version_details_label = 2131165277;
 			
-			// aapt resource value: 0x7f0700a2
-			public const int information = 2131165346;
+			// aapt resource value: 0x7f0700a4
+			public const int information = 2131165348;
 			
 			// aapt resource value: 0x7f07007c
 			public const int itinerary_markers_title = 2131165308;
@@ -3394,14 +3384,32 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f07008b
 			public const int licensing_title = 2131165323;
 			
-			// aapt resource value: 0x7f07009c
-			public const int lorem_100_words = 2131165340;
+			// aapt resource value: 0x7f070099
+			public const int licensing_unity_body_text = 2131165337;
+			
+			// aapt resource value: 0x7f070098
+			public const int licensing_unity_title_text = 2131165336;
+			
+			// aapt resource value: 0x7f07009e
+			public const int lorem_100_words = 2131165342;
 			
 			// aapt resource value: 0x7f070084
 			public const int map_quest_key = 2131165316;
 			
 			// aapt resource value: 0x7f070064
 			public const int menu_activity_route_filter = 2131165284;
+			
+			// aapt resource value: 0x7f0700aa
+			public const int nav_feedback = 2131165354;
+			
+			// aapt resource value: 0x7f0700a7
+			public const int nav_home = 2131165351;
+			
+			// aapt resource value: 0x7f0700a9
+			public const int nav_licenses = 2131165353;
+			
+			// aapt resource value: 0x7f0700a8
+			public const int nav_routes = 2131165352;
 			
 			// aapt resource value: 0x7f070089
 			public const int network_connection = 2131165321;
@@ -3448,8 +3456,8 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f070086
 			public const int settings = 2131165318;
 			
-			// aapt resource value: 0x7f0700a4
-			public const int source_substitute = 2131165348;
+			// aapt resource value: 0x7f0700a6
+			public const int source_substitute = 2131165350;
 			
 			// aapt resource value: 0x7f070074
 			public const int splash_screen_check_connection = 2131165300;
