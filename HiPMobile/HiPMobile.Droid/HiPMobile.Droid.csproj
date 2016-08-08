@@ -206,10 +206,6 @@
     </AndroidResource>
     <AndroidResource Include="Resources\values\Strings.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\Icon.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\Icon.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\Icon.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\Icon.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\Icon.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\dom.jpg" />
@@ -275,7 +271,6 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\values\dimens.xml" />
-    <AndroidResource Include="Resources\drawable-hdpi\hiphop.jpg" />
     <AndroidResource Include="Resources\drawable-hdpi\marker_blue.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_directions_black_48dp.png" />
@@ -305,11 +300,6 @@
     <AndroidResource Include="Resources\drawable-hdpi\marker_via.png" />
     <AndroidResource Include="Resources\drawable-hdpi\marker_destination.png" />
     <AndroidResource Include="Resources\menu\activity_route_menu.xml" />
-    <AndroidResource Include="Resources\drawable-hdpi\ic_filter_list_white_48dp.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\ic_filter_list_white_48dp.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_list_white_48dp.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_list_white_48dp.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_list_white_48dp.png" />
     <AndroidResource Include="Resources\drawable\ic_arrow_forward_48dp.xml" />
     <AndroidResource Include="Resources\drawable\ic_chevron_left_black_48dp.xml" />
     <AndroidResource Include="Resources\drawable\ic_chevron_right_black_48dp.xml" />
@@ -321,6 +311,8 @@
     <AndroidResource Include="Resources\drawable\ic_pause_black_36dp.xml" />
     <AndroidResource Include="Resources\drawable\ic_play_arrow_black_36dp.xml" />
     <AndroidResource Include="Resources\drawable\ic_feedback_black_24dp.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\hiphop-transparent.png" />
+    <AndroidResource Include="Resources\drawable\ic_filter_list_white_48dp.xml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
