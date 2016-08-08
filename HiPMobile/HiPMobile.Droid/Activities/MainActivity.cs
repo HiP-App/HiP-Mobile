@@ -153,6 +153,9 @@ namespace de.upb.hip.mobile.droid.Activities
                 case Resource.Id.nav_licenses:
                     StartActivity(typeof(LicensingActivity));
                     break;
+                case Resource.Id.nav_feedback:
+                    FeedbackManager.ShowFeedbackActivity(ApplicationContext);
+                    break;
             }
 
             // Close drawer
