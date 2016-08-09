@@ -1900,7 +1900,7 @@ namespace de.upb.hip.mobile.droid
 			public const int design_snackbar_background = 2130837582;
 			
 			// aapt resource value: 0x7f02004f
-			public const int hiphop = 2130837583;
+			public const int hiphop_transparent = 2130837583;
 			
 			// aapt resource value: 0x7f020050
 			public const int hockeyapp_btn_background = 2130837584;

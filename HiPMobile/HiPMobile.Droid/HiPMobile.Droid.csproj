@@ -125,6 +125,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activities\HipFeedbackActivity.cs" />
     <Compile Include="Activities\LicensingActivity.cs" />
     <Compile Include="Activities\ExhibitDetailsActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
@@ -311,7 +312,7 @@
     <AndroidResource Include="Resources\drawable\ic_pause_black_36dp.xml" />
     <AndroidResource Include="Resources\drawable\ic_play_arrow_black_36dp.xml" />
     <AndroidResource Include="Resources\drawable\ic_feedback_black_24dp.xml" />
-    <AndroidResource Include="Resources\drawable-hdpi\hiphop-transparent.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\hiphop_transparent.png" />
     <AndroidResource Include="Resources\drawable\ic_filter_list_white_48dp.xml" />
   </ItemGroup>
   <ItemGroup />

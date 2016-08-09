@@ -15,6 +15,7 @@
 using System;
 using System.Threading;
 using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Widget;
 using de.upb.hip.mobile.droid.Helpers;
@@ -22,6 +23,8 @@ using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.DataAccessLayer;
 using de.upb.hip.mobile.pcl.DataLayer;
 using HockeyApp;
+using HockeyApp.Objects;
+using Java.Lang;
 using Microsoft.Practices.Unity;
 using Realms;
 
@@ -65,7 +68,11 @@ namespace de.upb.hip.mobile.droid.Activities {
             });
 
             // make HockeyApp feedback available
-            FeedbackManager.Register (ApplicationContext);
+            FeedbackManager.Register (
+                ApplicationContext, 
+                "9947e2434fe64d318214cfc6972d4800", 
+                new HipFeedbackListener ()
+            );
 
         }
 
@@ -75,6 +82,18 @@ namespace de.upb.hip.mobile.droid.Activities {
             StartActivity (typeof (MainActivity));
             Finish ();
         }
+
+    }
+
+    public class HipFeedbackListener : FeedbackManagerListener {
+
+        public override bool FeedbackAnswered (FeedbackMessage p0)
+        {
+            // intentionally left blank
+            return true;
+        }
+
+        public override Class FeedbackActivityClass => Class.FromType (typeof(HipFeedbackActivity));
 
     }
 }
