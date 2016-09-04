@@ -84,6 +84,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             if (savedInstanceState != null)
             {
                 // activity re-creation because of device rotation, instant run, ...
+                recreatedMediaPlayer = false;
                 exhibitId = savedInstanceState.GetString (KEY_EXHIBIT_ID);
                 exhibit = ExhibitManager.GetExhibit (exhibitId);
                 currentPageIndex = savedInstanceState.GetInt (KEY_CURRENT_PAGE_INDEX, 0);
@@ -94,6 +95,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             else
             {
                 // activity creation because of intent
+                recreatedMediaPlayer = true;
                 var intent = Intent;
                 extras = intent.Extras;
                 exhibitId = intent.GetStringExtra (INTENT_EXTRA_EXHIBIT_ID);
@@ -279,7 +281,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             {
                 DisplayAudioAction (true);
                 // check is preference to automatically start audio is on
-                if (sharedPreferences.GetBoolean (Resources.GetString (Resource.String.pref_auto_start_audio_key), false))
+                if (sharedPreferences.GetBoolean (Resources.GetString (Resource.String.pref_auto_start_audio_key), false) && !recreatedMediaPlayer)
                 {
                     ShowAudioToolbar ();
                     StartAudioPlayback ();
@@ -605,6 +607,11 @@ namespace de.upb.hip.mobile.droid.Activities {
         private bool isAudioPlaying;
 
         /// <summary>
+        ///     Indicates whether the media player was recreated or rebound and therefore automatic audio playing can be done
+        /// </summary>
+        private bool recreatedMediaPlayer = true;
+
+        /// <summary>
         ///     Indicates whether the audio toolbar is currently displayed (true) or not (false)
         /// </summary>
         private bool isAudioToolbarHidden = true;
@@ -682,6 +689,7 @@ namespace de.upb.hip.mobile.droid.Activities {
                 }
                 mediaPlayerService.AddOnCompleteListener (ReactToAudioCompletion);
                 mediaPlayerService.StartSound ();
+                recreatedMediaPlayer = false;
                 audioSeekbar.Max = (int) mediaPlayerService.GetTimeTotal ();
                 handler.PostDelayed (UpdateProgressbar, 100);
             }
