@@ -58,6 +58,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             outState.PutBoolean (KEY_AUDIO_PLAYING, isAudioPlaying);
             outState.PutBoolean (KEY_AUDIO_TOOLBAR_HIDDEN, isAudioToolbarHidden);
             outState.PutBundle (KEY_EXTRAS, extras);
+            outState.PutInt (KEY_SEEKBAR_MAX, audioSeekbar.Max);
 
             base.OnSaveInstanceState (outState);
         }
@@ -91,6 +92,8 @@ namespace de.upb.hip.mobile.droid.Activities {
                 isAudioPlaying = savedInstanceState.GetBoolean (KEY_AUDIO_PLAYING, false);
                 isAudioToolbarHidden = savedInstanceState.GetBoolean (KEY_AUDIO_TOOLBAR_HIDDEN, true);
                 extras = savedInstanceState.GetBundle (KEY_EXTRAS);
+                ((SeekBar) FindViewById (Resource.Id.audio_progress_bar)).Max = savedInstanceState.GetInt (KEY_SEEKBAR_MAX, 0);
+                handler.PostDelayed(UpdateProgressbar, 100);
             }
             else
             {
@@ -661,6 +664,7 @@ namespace de.upb.hip.mobile.droid.Activities {
         private static readonly string KEY_AUDIO_PLAYING = "ExhibitDetailsActivity.isAudioPlaying";
         private static readonly string KEY_AUDIO_TOOLBAR_HIDDEN = "ExhibitDetailsActivity.isAudioToolbarHidden";
         private static readonly string KEY_EXTRAS = "ExhibitDetailsActivity.extras";
+        private static readonly string KEY_SEEKBAR_MAX = "ExhibitDetailsActivity.seekbar.max";
 
         // ui elements
         private FloatingActionButton fab;
