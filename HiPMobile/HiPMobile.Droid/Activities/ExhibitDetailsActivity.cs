@@ -89,7 +89,7 @@ namespace de.upb.hip.mobile.droid.Activities {
                 exhibit = ExhibitManager.GetExhibit (exhibitId);
                 currentPageIndex = savedInstanceState.GetInt (KEY_CURRENT_PAGE_INDEX, 0);
                 isAudioPlaying = savedInstanceState.GetBoolean (KEY_AUDIO_PLAYING, false);
-                isAudioToolbarHidden = true;
+                isAudioToolbarHidden = savedInstanceState.GetBoolean (KEY_AUDIO_TOOLBAR_HIDDEN, true);
                 extras = savedInstanceState.GetBundle (KEY_EXTRAS);
             }
             else
@@ -130,12 +130,10 @@ namespace de.upb.hip.mobile.droid.Activities {
                 if (isAudioPlaying)
                 {
                     PauseAudioPlayback ();
-                    isAudioPlaying = false;
                 }
                 else
                 {
                     StartAudioPlayback ();
-                    isAudioPlaying = true;
                     btnPlayPause.SetImageResource (Android.Resource.Color.Transparent);
                 }
                 UpdatePlayPauseButtonIcon ();
@@ -287,7 +285,6 @@ namespace de.upb.hip.mobile.droid.Activities {
                 {
                     ShowAudioToolbar ();
                     StartAudioPlayback ();
-                    isAudioPlaying = true;
                     UpdatePlayPauseButtonIcon ();
                 }
             }
@@ -691,17 +688,9 @@ namespace de.upb.hip.mobile.droid.Activities {
                 }
                 mediaPlayerService.AddOnCompleteListener (ReactToAudioCompletion);
                 mediaPlayerService.StartSound ();
-                activityRecreated = false;
+                isAudioPlaying = true;
                 audioSeekbar.Max = (int) mediaPlayerService.GetTimeTotal ();
                 handler.PostDelayed (UpdateProgressbar, 100);
-            }
-            catch (IllegalStateException e)
-            {
-                isAudioPlaying = false;
-            }
-            catch (NullPointerException e)
-            {
-                isAudioPlaying = false;
             }
             catch (Exception e)
             {
@@ -735,17 +724,11 @@ namespace de.upb.hip.mobile.droid.Activities {
             try
             {
                 mediaPlayerService.PauseSound ();
-            }
-            catch (IllegalStateException e)
-            {
-            }
-            catch (NullPointerException e)
-            {
+                isAudioPlaying = false;
             }
             catch (Exception e)
             {
             }
-            isAudioPlaying = false;
         }
 
         /// <summary>
@@ -757,17 +740,11 @@ namespace de.upb.hip.mobile.droid.Activities {
             try
             {
                 mediaPlayerService.StopSound ();
+                isAudioPlaying = false;
             }
-            catch (IllegalStateException e)
+            catch (Exception e)
             {
             }
-            catch (NullPointerException e)
-            {
-            }
-            catch (System.Exception e)
-            {
-            }
-            isAudioPlaying = false;
         }
 
         #endregion
