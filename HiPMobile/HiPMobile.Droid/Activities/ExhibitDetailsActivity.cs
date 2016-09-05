@@ -84,7 +84,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             if (savedInstanceState != null)
             {
                 // activity re-creation because of device rotation, instant run, ...
-                recreatedMediaPlayer = false;
+                activityRecreated = true;
                 exhibitId = savedInstanceState.GetString (KEY_EXHIBIT_ID);
                 exhibit = ExhibitManager.GetExhibit (exhibitId);
                 currentPageIndex = savedInstanceState.GetInt (KEY_CURRENT_PAGE_INDEX, 0);
@@ -95,7 +95,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             else
             {
                 // activity creation because of intent
-                recreatedMediaPlayer = true;
+                activityRecreated = false;
                 var intent = Intent;
                 extras = intent.Extras;
                 exhibitId = intent.GetStringExtra (INTENT_EXTRA_EXHIBIT_ID);
@@ -169,6 +169,8 @@ namespace de.upb.hip.mobile.droid.Activities {
                         throw new IllegalArgumentException ("Unsupported FAB action!");
                 }
             };
+
+            UpdatePlayPauseButtonIcon ();
 
             DisplayCurrenExhibitPage ();
         }
@@ -281,7 +283,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             {
                 DisplayAudioAction (true);
                 // check is preference to automatically start audio is on
-                if (sharedPreferences.GetBoolean (Resources.GetString (Resource.String.pref_auto_start_audio_key), false) && !recreatedMediaPlayer)
+                if (!activityRecreated && sharedPreferences.GetBoolean (Resources.GetString (Resource.String.pref_auto_start_audio_key), false))
                 {
                     ShowAudioToolbar ();
                     StartAudioPlayback ();
@@ -607,9 +609,9 @@ namespace de.upb.hip.mobile.droid.Activities {
         private bool isAudioPlaying;
 
         /// <summary>
-        ///     Indicates whether the media player was recreated or rebound and therefore automatic audio playing can be done
+        ///     Indicates whether the activity has been recreated (true) or not (false)
         /// </summary>
-        private bool recreatedMediaPlayer = true;
+        private bool activityRecreated = false;
 
         /// <summary>
         ///     Indicates whether the audio toolbar is currently displayed (true) or not (false)
@@ -689,7 +691,7 @@ namespace de.upb.hip.mobile.droid.Activities {
                 }
                 mediaPlayerService.AddOnCompleteListener (ReactToAudioCompletion);
                 mediaPlayerService.StartSound ();
-                recreatedMediaPlayer = false;
+                activityRecreated = false;
                 audioSeekbar.Max = (int) mediaPlayerService.GetTimeTotal ();
                 handler.PostDelayed (UpdateProgressbar, 100);
             }
