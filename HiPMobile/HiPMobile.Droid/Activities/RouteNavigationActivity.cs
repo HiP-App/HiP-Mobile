@@ -26,6 +26,7 @@ using Android.Support.V7.App;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using de.upb.hip.mobile.droid.Adapters;
 using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.droid.Listeners;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
@@ -42,7 +43,7 @@ using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace de.upb.hip.mobile.droid.Activities {
     [Activity (Theme = "@style/AppTheme", Label = "RouteNavigationActivity")]
-    public class RouteNavigationActivity : AppCompatActivity, ILocationListener {
+    public class RouteNavigationActivity : AppCompatActivity, ExtendedLocationListenerAdapter {//ILocationListener {
 
         public const string IntentRoute = "route";
         private double distanceWalked;
@@ -67,23 +68,23 @@ namespace de.upb.hip.mobile.droid.Activities {
         private readonly string LogId = "RouteNavigationActivity";
 
 
-        public void OnLocationChanged (Location location)
+        public void LocationChanged(Location location)
         {
-            var currentLocation = new GeoPoint (location);
+            var currentLocation = new GeoPoint(location);
             //calculate the distance walked from last positions
-            distanceWalked = currentLocation.DistanceTo (gpsLocation);
-            var tempNode = (RoadNode) road.MNodes [IndexNextWaypointNode];
+            distanceWalked = currentLocation.DistanceTo(gpsLocation);
+            var tempNode = (RoadNode)road.MNodes[IndexNextWaypointNode];
 
             //if distance > 20 m new request to mapquest
             if (distanceWalked > 20)
             {
-                UpdateRoute (currentLocation, tempNode);
+                UpdateRoute(currentLocation, tempNode);
             }
             else
             {
-                UpdateInstructions (currentLocation, tempNode);
+                UpdateInstructions(currentLocation, tempNode);
             }
-            MapView.Invalidate ();
+            MapView.Invalidate();
         }
 
         protected override void OnCreate (Bundle savedInstanceState)
@@ -99,8 +100,11 @@ namespace de.upb.hip.mobile.droid.Activities {
 
             geoPoints = new List<GeoPoint> ();
             // getting location
-            GpsTracker = new ExtendedLocationListener (Application.Context);
-            gpsLocation = new GeoPoint (GpsTracker.Latitude, GpsTracker.Longitude);
+            GpsTracker = ExtendedLocationListener.GetInstance();
+            GpsTracker.SetContext(Application.Context);
+            GpsTracker.setExtendedLocationListenerAdapter(this);
+            GpsTracker.EnableLocationUpdates();
+            gpsLocation = new GeoPoint(GpsTracker.GetLocation().Latitude, GpsTracker.GetLocation().Longitude);
 
             // TODO Remove this as soon as no needs to run in emulator
             // set default coordinats for emulator
@@ -108,22 +112,13 @@ namespace de.upb.hip.mobile.droid.Activities {
                 Build.Model.Contains ("Emulator") ||
                 Build.Model.Contains ("Android SDK"))
             {
-                gpsLocation = new GeoPoint (ExtendedLocationListener.PADERBORN_HBF.Latitude,
-                                            ExtendedLocationListener.PADERBORN_HBF.Longitude);
+                gpsLocation = new GeoPoint(AndroidConstants.PADERBORN_HBF.Latitude,
+                                            AndroidConstants.PADERBORN_HBF.Longitude);
             }
             //catch if gps ist still zero
             if (gpsLocation.Latitude == 0f && gpsLocation.Longitude == 0f)
-                gpsLocation = new GeoPoint (ExtendedLocationListener.PADERBORN_HBF.Latitude,
-                                            ExtendedLocationListener.PADERBORN_HBF.Longitude);
-
-            foreach (var provider in GpsTracker.LocationManager.GetProviders (true))
-            {
-                GpsTracker.LocationManager.RequestLocationUpdates (
-                    provider,
-                    ExtendedLocationListener.MIN_TIME_BW_UPDATES,
-                    ExtendedLocationListener.MIN_DISTANCE_CHANGE_FOR_UPDATES,
-                    this);
-            }
+                gpsLocation = new GeoPoint(AndroidConstants.PADERBORN_HBF.Latitude,
+                                            AndroidConstants.PADERBORN_HBF.Longitude);
 
             //Get the Route from RouteDetailsActivity
             var extras = Intent.Extras;
@@ -335,51 +330,12 @@ namespace de.upb.hip.mobile.droid.Activities {
             }*/
         }
 
-        #region notImplented
-
-        public void OnProviderDisabled (string provider)
+        protected override void OnDestroy()
         {
-            Toast.MakeText (this, "GPS Disabled",
-                            ToastLength.Short).Show ();
+            GpsTracker.Unregister();
+
+            base.OnDestroy();
         }
-
-        public void OnProviderEnabled (string provider)
-        {
-            Toast.MakeText (this, "GPS Enabled",
-                            ToastLength.Short).Show ();
-        }
-
-        public void OnStatusChanged (string provider, [GeneratedEnum] Availability status, Bundle extras)
-        {
-            switch (status)
-            {
-                case Availability.OutOfService:
-                    Toast.MakeText (this, "Status Changed: Out of Service",
-                                    ToastLength.Short).Show ();
-                    break;
-                case Availability.TemporarilyUnavailable:
-                    Toast.MakeText (this, "Status Changed: Temporarily Unavailable",
-                                    ToastLength.Short).Show ();
-                    break;
-                case Availability.Available:
-                    Toast.MakeText (this, "Status Changed: Available",
-                                    ToastLength.Short).Show ();
-                    break;
-            }
-        }
-
-        public override bool OnOptionsItemSelected (IMenuItem item)
-        {
-            if (item.ItemId.Equals (Android.Resource.Id.Home))
-            {
-                SupportFinishAfterTransition ();
-                return true;
-            }
-
-            return base.OnOptionsItemSelected (item);
-        }
-
-        #endregion
     }
 }
 
