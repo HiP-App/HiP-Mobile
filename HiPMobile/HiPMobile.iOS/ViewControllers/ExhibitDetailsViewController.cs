@@ -33,6 +33,10 @@ namespace HiPMobile.iOS
         //    NavigationItem.Title = page.ToString();
         //}
 
+        partial void SubtitlesButtonPressed(UIButton sender)
+        {
+        }
+
 
         private class ScrollViewSource : PagingScrollViewSource
         {

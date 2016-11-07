@@ -18,11 +18,24 @@ namespace HiPMobile.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIScrollView exhibitDetailsScrollView { get; set; }
 
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton subtitleButton { get; set; }
+
+        [Action ("SubtitlesButtonPressed:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void SubtitlesButtonPressed (UIKit.UIButton sender);
+
         void ReleaseDesignerOutlets ()
         {
             if (exhibitDetailsScrollView != null) {
                 exhibitDetailsScrollView.Dispose ();
                 exhibitDetailsScrollView = null;
+            }
+
+            if (subtitleButton != null) {
+                subtitleButton.Dispose ();
+                subtitleButton = null;
             }
         }
     }

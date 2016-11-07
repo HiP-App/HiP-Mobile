@@ -233,6 +233,14 @@
   <ItemGroup>
     <Compile Include="Delegates\OsmMapViewDelegate.cs" />
     <Compile Include="Delegates\PagingScrollViewSource.cs" />
+    <Compile Include="ViewControllers\ReferenceViewController.cs" />
+    <Compile Include="ViewControllers\ReferenceViewController.designer.cs">
+      <DependentUpon>ReferenceViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\SubtitleViewController.cs" />
+    <Compile Include="ViewControllers\SubtitleViewController.designer.cs">
+      <DependentUpon>SubtitleViewController.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewControllers\ExhibitDetailsViewController.cs" />
     <Compile Include="ViewControllers\ExhibitDetailsViewController.designer.cs">
       <DependentUpon>ExhibitDetailsViewController.cs</DependentUpon>

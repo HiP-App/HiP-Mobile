@@ -301,7 +301,20 @@
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="5876" translatesAutoresizingMaskIntoConstraints="NO" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews/>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5905" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="20" y="99" width="105" height="30"/>
+                                <state key="normal" title="Subtitles">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="SubtitlesButtonPressed:" destination="5520" id="5908" eventType="touchUpInside"/>
+                                    <segue id="6333" destination="5925" kind="popover" popoverAnchorView="5905" animates="NO">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint id="5878" firstItem="5876" firstAttribute="top" secondItem="5521" secondAttribute="top"/>
@@ -312,11 +325,90 @@
                     </view>
                     <connections>
                         <outlet property="exhibitDetailsScrollView" destination="5876" id="name-outlet-5876"/>
+                        <outlet property="subtitleButton" destination="5905" id="name-outlet-5905"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5522" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2138" y="-1095"/>
+        </scene>
+        <scene sceneID="5891">
+            <objects>
+                <viewController id="5892" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5889"/>
+                        <viewControllerLayoutGuide type="bottom" id="5890"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5893" customClass="SubtitleViewController">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitles Content" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5906" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="139" y="290" width="163" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </view>
+                    <connections/>
+                    <tabBarItem key="tabBarItem" title="Subtitles" id="6632"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5894" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3620" y="-1099"/>
+        </scene>
+        <scene sceneID="5898">
+            <objects>
+                <viewController id="5899" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5896"/>
+                        <viewControllerLayoutGuide type="bottom" id="5897"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5900" customClass="ReferenceViewController">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reference Content" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5907" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="279" y="290" width="168" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="References" id="6864"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5901" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3622" y="-402"/>
+        </scene>
+        <scene sceneID="5924">
+            <objects>
+                <tabBarController id="5925" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="5928">
+                        <rect key="frame" x="0.0" y="551" width="600" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue id="6633" destination="5892" kind="relationship" relationship="viewControllers"/>
+                        <segue id="6865" destination="5899" kind="relationship" relationship="viewControllers"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5929" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationBar contentMode="scaleToFill" id="6868" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                    <rect key="frame" x="2947" y="-1076" width="320" height="44"/>
+                    <items>
+                        <navigationItem title="Title" id="6869"/>
+                    </items>
+                </navigationBar>
+            </objects>
+            <point key="canvasLocation" x="2841" y="-1093"/>
         </scene>
     </scenes>
     <resources>
