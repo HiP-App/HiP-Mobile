@@ -51,6 +51,11 @@ namespace HiPMobile.iOS
                 UIView pageView = new UIView();
                 pageView.BackgroundColor = index % 2 == 0? UIColor.Yellow: UIColor.Purple;
                 //<-init view from xib instead this
+                if (page.TimeSliderPage != null)
+                {
+                    pageView = TimeSliderPageView.Create();                    
+                }
+                
 
                 return pageView;
             }

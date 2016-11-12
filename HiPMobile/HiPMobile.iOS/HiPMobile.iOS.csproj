@@ -146,6 +146,30 @@
     <ImageAsset Include="Resources\Images.xcassets\Close.imageset\ic_close_white_36pt_3x.png">
       <InProject>false</InProject>
     </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ExpandLess.imageset\Contents.json">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ExpandLess.imageset\ic_expand_less_white.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ExpandLess.imageset\ic_expand_less_white_2x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ExpandLess.imageset\ic_expand_less_white_3x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ExpandMore.imageset\Contents.json">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ExpandMore.imageset\ic_expand_more_white.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ExpandMore.imageset\ic_expand_more_white_2x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ExpandMore.imageset\ic_expand_more_white_3x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
     <ImageAsset Include="Resources\Images.xcassets\ForwardArrow.imageset\Contents.json">
       <InProject>false</InProject>
     </ImageAsset>
@@ -224,15 +248,35 @@
     </InterfaceDefinition>
   </ItemGroup>
   <ItemGroup>
+    <InterfaceDefinition Include="Views\FloatingTextView.xib">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />
     <BundleResource Include="Resources\base.lproj\Localizable.strings" />
     <InterfaceDefinition Include="Views\OsmMapView.xib" />
+    <InterfaceDefinition Include="Views\TimeSliderPageView.xib" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Delegates\OsmMapViewDelegate.cs" />
     <Compile Include="Delegates\PagingScrollViewSource.cs" />
+    <Compile Include="M.cs" />
+    <Compile Include="M.designer.cs">
+      <DependentUpon>M.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MDSli.cs" />
+    <Compile Include="MDSli.designer.cs">
+      <DependentUpon>MDSli.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TimeSliderPageView.cs" />
+    <Compile Include="Views\TimeSliderPageView.designer.cs">
+      <DependentUpon>TimeSliderPageView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FloatingTextView.cs" />
+    <Compile Include="Views\FloatingTextView.designer.cs">
+      <DependentUpon>FloatingTextView.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewControllers\ExhibitDetailsViewController.cs" />
     <Compile Include="ViewControllers\ExhibitDetailsViewController.designer.cs">
       <DependentUpon>ExhibitDetailsViewController.cs</DependentUpon>
