@@ -261,14 +261,6 @@
   <ItemGroup>
     <Compile Include="Delegates\OsmMapViewDelegate.cs" />
     <Compile Include="Delegates\PagingScrollViewSource.cs" />
-    <Compile Include="M.cs" />
-    <Compile Include="M.designer.cs">
-      <DependentUpon>M.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MDSli.cs" />
-    <Compile Include="MDSli.designer.cs">
-      <DependentUpon>MDSli.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\TimeSliderPageView.cs" />
     <Compile Include="Views\TimeSliderPageView.designer.cs">
       <DependentUpon>TimeSliderPageView.cs</DependentUpon>

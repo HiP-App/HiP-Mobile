@@ -53,7 +53,7 @@ namespace HiPMobile.iOS
                 //<-init view from xib instead this
                 if (page.TimeSliderPage != null)
                 {
-                    pageView = TimeSliderPageView.Create();                    
+                    pageView = TimeSliderPageView.Create(page.TimeSliderPage);                    
                 }
                 
 
