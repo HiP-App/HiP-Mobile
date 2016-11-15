@@ -8,20 +8,26 @@ namespace HiPMobile.iOS
 {
     public partial class FloatingTextView : UIView
     {
-        public NSAttributedString AttributedText { get; set; }
         public nfloat ViewBringDownY { get; set; }
         public nfloat ViewShiftUpY { get; set; }
         Boolean textExpanded;
+        public UITextView TextView
+        {
+            get
+            {
+                return textView;
+            }
+        }
 
         public FloatingTextView (IntPtr handle) : base (handle)
         {
+            textExpanded = false;
         }
 
         public static FloatingTextView Create()
         {
             var arr = NSBundle.MainBundle.LoadNib("FloatingTextView", null, null);
             var view = Runtime.GetNSObject<FloatingTextView>(arr.ValueAt(0));
-            view.textExpanded = false;
             return view;
         }
 

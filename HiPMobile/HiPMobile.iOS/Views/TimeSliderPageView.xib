@@ -12,18 +12,19 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <subviews>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0" minValue="0.0" maxValue="1" id="4" translatesAutoresizingMaskIntoConstraints="NO" customClass="MDSlider">
-                    <rect key="frame" x="18" y="450" width="564" height="21"/>
+                    <rect key="frame" x="18" y="450" width="564" height="31"/>
                     <color key="thumbTintColor" colorSpace="calibratedRGB" red="0" green="0" blue="1" alpha="1"/>
                     <constraints>
-                        <constraint id="20" firstItem="4" firstAttribute="height" constant="20"/>
+                        <constraint id="20" firstItem="4" firstAttribute="height" constant="30"/>
                     </constraints>
+                    <connections/>
                 </slider>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="21" translatesAutoresizingMaskIntoConstraints="NO">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="21" translatesAutoresizingMaskIntoConstraints="NO">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="420"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="26" translatesAutoresizingMaskIntoConstraints="NO">
-                    <rect key="frame" x="39" y="490" width="530" height="16"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <rect key="frame" x="39" y="500" width="530" height="13.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>

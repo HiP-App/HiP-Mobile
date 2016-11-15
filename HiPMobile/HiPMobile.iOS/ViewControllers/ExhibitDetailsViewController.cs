@@ -23,9 +23,10 @@ namespace HiPMobile.iOS
             base.ViewDidLoad();
             ScrollViewSource scrollViewSource = new ScrollViewSource();
             scrollViewSource.DetailPages = Exhibit.Pages;
-           // scrollViewSource.PageChanged += PageChanged;
+            // scrollViewSource.PageChanged += PageChanged; //will be needed for the audio control 
             exhibitDetailsScrollView.Delegate = scrollViewSource;
             scrollViewSource.LoadInitialViews(exhibitDetailsScrollView);
+            NavigationItem.Title = Exhibit.Name;           
         }
 
         //void PageChanged(nint page)
@@ -53,9 +54,8 @@ namespace HiPMobile.iOS
                 //<-init view from xib instead this
                 if (page.TimeSliderPage != null)
                 {
-                    pageView = TimeSliderPageView.Create(page.TimeSliderPage);                    
+                    pageView = TimeSliderPageView.Create(page.TimeSliderPage);
                 }
-                
 
                 return pageView;
             }

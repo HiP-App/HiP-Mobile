@@ -13,15 +13,22 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <size key="freeformSize" width="600" height="600"/>
             <subviews>
+                <view contentMode="scaleToFill" id="30" translatesAutoresizingMaskIntoConstraints="NO">
+                    <rect key="frame" x="0.0" y="56" width="600" height="1"/>
+                    <color key="backgroundColor" colorSpace="calibratedWhite" white="0.666666666666667" alpha="1"/>
+                    <constraints>
+                        <constraint id="31" firstItem="30" firstAttribute="height" constant="1"/>
+                    </constraints>
+                </view>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" id="4" translatesAutoresizingMaskIntoConstraints="NO" editable="NO" showsHorizontalScrollIndicator="NO" selectable="NO">
                     <rect key="frame" x="0.0" y="57" width="600" height="543"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9" translatesAutoresizingMaskIntoConstraints="NO" customClass="MDButton">
-                    <rect key="frame" x="518" y="26" width="46" height="46"/>
+                    <rect key="frame" x="528" y="43" width="46" height="46"/>
                     <color key="backgroundColor" colorSpace="calibratedRGB" red="1" green="0.6470588235294118" blue="0" alpha="1"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                     <color key="tintColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
@@ -35,7 +42,7 @@
                     </userDefinedRuntimeAttributes>
                     <constraints>
                         <constraint id="11" firstItem="9" firstAttribute="width" constant="46"/>
-                        <constraint id="12" firstAttribute="width" secondItem="9" secondAttribute="height" multiplier="1:1"/>
+                        <constraint id="27" firstAttribute="width" secondItem="9" secondAttribute="height" multiplier="1:1"/>
                     </constraints>
                 </button>
             </subviews>
@@ -43,9 +50,12 @@
                 <constraint id="5" firstItem="4" firstAttribute="top" secondItem="1" secondAttribute="top" constant="57"/>
                 <constraint id="6" firstItem="4" firstAttribute="leading" secondItem="1" secondAttribute="leading"/>
                 <constraint id="7" firstItem="4" firstAttribute="trailing" secondItem="1" secondAttribute="trailing"/>
-                <constraint id="10" firstItem="4" firstAttribute="top" secondItem="9" secondAttribute="centerY" constant="8"/>
-                <constraint id="13" firstItem="4" firstAttribute="trailing" secondItem="9" secondAttribute="trailing" constant="36"/>
                 <constraint id="18" firstItem="1" firstAttribute="bottom" secondItem="4" secondAttribute="bottom"/>
+                <constraint id="24" firstItem="9" firstAttribute="centerY" secondItem="4" secondAttribute="top" constant="9"/>
+                <constraint id="26" firstItem="1" firstAttribute="trailing" secondItem="9" secondAttribute="trailing" constant="26"/>
+                <constraint id="32" firstItem="30" firstAttribute="leading" secondItem="1" secondAttribute="leading"/>
+                <constraint id="33" firstItem="1" firstAttribute="trailing" secondItem="30" secondAttribute="trailing"/>
+                <constraint id="34" firstItem="4" firstAttribute="top" secondItem="30" secondAttribute="bottom"/>
             </constraints>
             <connections>
                 <outlet property="expandButton" destination="9" id="name-outlet-9"/>
