@@ -29,6 +29,7 @@ using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
 using de.upb.hip.mobile.pcl.DataAccessLayer;
 using de.upb.hip.mobile.pcl.DataLayer;
+using de.upb.hip.mobile.pcl.Helpers;
 using Microsoft.Practices.Unity;
 using Realms;
 
@@ -67,7 +68,7 @@ namespace de.upb.hip.mobile.droid.Activities
                 KeyManager.Instance.RegisterProvider (new AndroidKeyProvider ());
 
                 DbManager.UpdateDatabase ();
-
+                RouteCalculator test = new RouteCalculator();
                 action = StartMainActivity;
 
                 //setup the ExtendedLocationListener by calling it once
