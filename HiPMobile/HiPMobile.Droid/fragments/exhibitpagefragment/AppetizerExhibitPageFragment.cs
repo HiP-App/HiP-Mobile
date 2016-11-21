@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
@@ -27,6 +28,8 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
         /// </summary>
         private readonly int BOTTOM_SHEET_HEIGHT = 200;
 
+        ///     Actual pixels in Height occupied by Bottom sheet + the cross-bar above
+        private readonly int Occupied_Height = 107;
         /// <summary>
         ///     Stores the model instance for this page.
         /// </summary>
@@ -70,8 +73,11 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
             if (imgView != null && page != null)
             {
                 var img = page.Image;
+                float imgHeight = (float)Resources.DisplayMetrics.HeightPixels - PixelDpConversion.ConvertDpToPixel((float)BOTTOM_SHEET_HEIGHT);
                 var drawable = img.GetDrawable (Context, imgView.Width, imgView.Height);
-                imgView.SetImageDrawable (drawable);
+               RelativeLayout.LayoutParams layout = (RelativeLayout.LayoutParams)imgView.LayoutParameters;
+                layout.Height = (int)(imgHeight- Occupied_Height);
+               imgView.SetImageDrawable (drawable);
             }
 
             return v;

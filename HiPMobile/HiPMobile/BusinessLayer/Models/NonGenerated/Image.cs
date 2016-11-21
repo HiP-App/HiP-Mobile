@@ -24,7 +24,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
         private readonly IImageDimension imgDimension = IoCManager.UnityContainer.Resolve<IImageDimension>();
 
         private int _width { get; set; }
-        [Ignored]
+       [Ignored]
         public int Width {
             get {
                 if (_width != 0)
@@ -45,7 +45,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
         }
 
         private int _height { get; set; }
-        [Ignored]
+       [Ignored]
         public int Height
         {
             get

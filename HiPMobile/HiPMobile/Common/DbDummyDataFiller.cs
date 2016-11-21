@@ -178,6 +178,7 @@ namespace de.upb.hip.mobile.droid.Helpers {
                 var paderquellen2Image = CreateImage ("", "Leben am Wasser", "quellen2_teaser.jpg");
                 Exhibit paderquellen2 = CreateExhibit ("Leben am Wasser", "", 51.718811867802174, 8.751070350408554,
                                                        new[] {"Kirche"}, new[] {"Dom"}, paderquellen2Image);
+           
                 paderquellen2.Pages.Add (CreateAppetizerPage ("Paderborn – so schön wie das Land, in dem Milch und Honig fließen?",
                                                               paderquellen2Image));
                 karlsrouteSet.ActiveSet.Add (paderquellen2);
@@ -356,6 +357,7 @@ namespace de.upb.hip.mobile.droid.Helpers {
         {
             var img = DbManager.CreateBusinessObject<Image> ();
             img.Title = title;
+            
             img.Description = description;
             img.Data = dataLoader.LoadByteData(path);
             return img;

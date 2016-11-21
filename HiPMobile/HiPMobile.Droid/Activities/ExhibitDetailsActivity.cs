@@ -276,6 +276,7 @@ namespace de.upb.hip.mobile.droid.Activities {
                 var maxHeightInPixels = (int) PixelDpConversion.ConvertDpToPixel (config.MaxHeight);
                 var parameters = bottomSheet.LayoutParameters;
                 parameters.Height = maxHeightInPixels;
+                
                 bottomSheet.LayoutParameters = parameters;
 
                 // set content
