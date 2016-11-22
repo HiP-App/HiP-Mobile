@@ -31,6 +31,7 @@ using de.upb.hip.mobile.droid.Listeners;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Common;
+using de.upb.hip.mobile.pcl.Helpers;
 using Org.Osmdroid.Bonuspack.Overlays;
 using Org.Osmdroid.Bonuspack.Routing;
 using Org.Osmdroid.Tileprovider;
@@ -65,6 +66,7 @@ namespace de.upb.hip.mobile.droid.Activities {
         private Route route;
         protected Button TrackingModeButton;
         private IList<Waypoint> wayPoints;
+        private RouteCalculator routeCalculator;
 
 
         public void LocationChanged (Location location)
@@ -86,7 +88,6 @@ namespace de.upb.hip.mobile.droid.Activities {
         {
             base.OnCreate (savedInstanceState);
             SetContentView (Resource.Layout.activity_route_navigation);
-
             if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.Lollipop)
                 Window.AddFlags (WindowManagerFlags.DrawsSystemBarBackgrounds);
 
@@ -103,6 +104,8 @@ namespace de.upb.hip.mobile.droid.Activities {
             GpsTracker.EnableLocationUpdates ();
             GpsTracker.EnableCheckForExhibits ();
             gpsLocation = new GeoPoint (GpsTracker.Latitude, GpsTracker.Longitude);
+
+            routeCalculator = RouteCalculator.Instance;
 
             // TODO Remove this as soon as no needs to run in emulator
             // set default coordinats for emulator
@@ -200,6 +203,8 @@ namespace de.upb.hip.mobile.droid.Activities {
 
             //Add current position to road
             geoPoints.Add (new GeoPoint (gpsLocation.Latitude, gpsLocation.Longitude));
+
+            routeCalculator.CreateRouteWithSeveralWaypoints (new GeoLocation( gpsLocation.Latitude,gpsLocation.Longitude), wayPoints);
 
             foreach (var w in wayPoints)
             {

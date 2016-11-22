@@ -55,7 +55,7 @@ namespace de.upb.hip.mobile.droid.Activities
 
             textAction.SetText(Resource.String.splash_screen_loading);
             textWaiting.SetText(Resource.String.splash_screen_waiting);
-
+            
             ThreadPool.QueueUserWorkItem(state =>
             {
                 // setup IoCManager
@@ -63,12 +63,12 @@ namespace de.upb.hip.mobile.droid.Activities
                 IoCManager.UnityContainer.RegisterType<IDataLoader, EmbeddedResourceDataLoader> ();
                 IoCManager.UnityContainer.RegisterType<IImageDimension, AndroidImageDimension> ();
                 //IoCManager.UnityContainer.RegisterInstance (typeof(IDataLoader), new AndroidDataLoader (Assets));
-
+                RouteCalculator calculator = RouteCalculator.Instance;
                 // setup KeyManager
                 KeyManager.Instance.RegisterProvider (new AndroidKeyProvider ());
 
                 DbManager.UpdateDatabase ();
-                RouteCalculator test = new RouteCalculator();
+             
                 action = StartMainActivity;
 
                 //setup the ExtendedLocationListener by calling it once
