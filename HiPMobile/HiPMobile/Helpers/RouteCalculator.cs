@@ -11,37 +11,41 @@ using OsmSharp;
 using OsmSharp.Streams;
 using Route = Itinero.Route;
 using System;
+using System.Linq;
+using Itinero.LocalGeo;
 
 namespace de.upb.hip.mobile.pcl.Helpers {
     public sealed class RouteCalculator {
 
-        private static RouterDb routingDB;
         private static Router routeRouter;
         private static IList<GeoLocation> route;
 
         private static RouteCalculator instance;
-        private static readonly object padlock = new object ();
+        private static readonly object Padlock = new object ();
 
-        //Initializes the database for the routing from pbf
+
+        /// <summary>
+        /// Initializes the database for the routing from pbf
+        /// </summary>
         private RouteCalculator ()
         {
-            routingDB = new RouterDb ();
+           RouterDb routingDb = new RouterDb ();
 
             var assembly = typeof (RouteCalculator).GetTypeInfo ().Assembly;
             using (Stream stream = assembly.GetManifestResourceStream ("de.upb.hip.mobile.pcl.Content.osmfile.routerdb"))
             {
-                routingDB = RouterDb.Deserialize (stream);
+                routingDb = RouterDb.Deserialize (stream);
             }
 
             //Initialize Router after loading Deserializing is important, otherwise Profiles are not loaded properly
-            routeRouter = new Router (routingDB);
+            routeRouter = new Router (routingDb);
 
             route = new List<GeoLocation> ();
         }
 
         public static RouteCalculator Instance {
             get {
-                lock (padlock)
+                lock (Padlock)
                 {
                     if (instance == null)
                     {
@@ -52,86 +56,57 @@ namespace de.upb.hip.mobile.pcl.Helpers {
             }
         }
 
-        //Simple route from start to endpoint
-        public void CreateSimpleRoute (GeoLocation start, GeoLocation end)
+
+        /// <summary>
+        /// Simple route from start to endpoint
+        /// </summary>
+        /// <param name="start">start position</param>
+        /// <param name="end">end position</param>
+        /// <returns>IList GeoLocation</returns>
+        public IList<GeoLocation> CreateSimpleRoute (GeoLocation start, GeoLocation end)
         {
+            IList<GeoLocation> result = new List<GeoLocation> ();
             // calculate a route.
             var r = routeRouter.Calculate (Vehicle.Pedestrian.Fastest (),
                                            (float) start.Latitude, (float) start.Longitude, (float) end.Latitude, (float) end.Longitude);
+
+            foreach (Coordinate c in r.Shape)
+            {
+                result.Add (new GeoLocation (c.Latitude, c.Longitude));
+            }
+
+            return result;
         }
 
-        //This method calculates one route from several sub routes
+
+        /// <summary>
+        /// This method calculates one route from several waypoints
+        /// </summary>
+        /// <param name="userPosition">position of user</param>
+        /// <param name="listOfWayPoints">list of all waypoints</param>
+        /// <returns>IList GeoLocation</returns>
         public IList<GeoLocation> CreateRouteWithSeveralWaypoints (GeoLocation userPosition, IList<Waypoint> listOfWayPoints)
         {
-            //Contains all subroutes of the path
-            IList<Itinero.Route> routes = new List<Route> ();
-            //starting distance with very high placeholder value
-            float distance = 1000000;
-            //is the location to compute next shortest waypoint
-            GeoLocation currentLocation = userPosition;
-            //Buffer route
-            Itinero.Route temp = null;
-            //holds all waypoints which are already vistited
-            IList<int> listofIndices = new List<int> ();
-            //index of shortest next waypoint
-            int index = 0;
             //List of Geolocations for path
             IList<GeoLocation> result = new List<GeoLocation> ();
+            IList<Coordinate> locations = new List<Coordinate> ();
 
-            for (int i = 0; i < listOfWayPoints.Count;)
+
+            locations.Add (new Coordinate ((float) userPosition.Latitude, (float) userPosition.Longitude));
+
+            foreach (var v in listOfWayPoints)
             {
-                if (listofIndices.Contains (i) == false)
-                {
-                    Stopwatch stopwatch = new Stopwatch ();
-
-                    // Begin timing
-                    stopwatch.Start ();
-
-
-                    var r = routeRouter.Calculate (Vehicle.Pedestrian.Fastest (),
-                                                   (float) currentLocation.Latitude, (float) currentLocation.Longitude, (float) listOfWayPoints [i].Location.Latitude,
-                                                   (float) listOfWayPoints [i].Location.Longitude);
-                    stopwatch.Stop ();
-
-                    Debug.WriteLine("Time elapsed: {0}", stopwatch.ElapsedMilliseconds);
-
-                    if (r.TotalDistance < distance)
-                    {
-                        index = i;
-                        temp = r;
-                        distance = r.TotalDistance;
-                        i++;
-                    }
-                    else
-                    {
-                        i++;
-                    }
-                }
-                else
-                    i++;
-
-
-                if (i == listOfWayPoints.Count)
-                {
-                    routes.Add (temp);
-                    listofIndices.Add (index);
-                    i = 0;
-                    currentLocation = listOfWayPoints [index].Location;
-                    distance = 100000;
-                }
-
-                if (listofIndices.Count == listOfWayPoints.Count)
-                {
-                    foreach (Route rt in routes)
-                    {
-                        foreach (var coor in rt.Shape)
-                        {
-                            result.Add (new GeoLocation (coor.Latitude, coor.Longitude));
-                        }
-                    }
-                    break;
-                }
+                locations.Add (new Coordinate ((float) v.Location.Latitude, (float) v.Location.Longitude));
             }
+
+
+            var route = routeRouter.Calculate (Vehicle.Pedestrian.Fastest (), locations.ToArray ());
+
+            foreach (Coordinate c in route.Shape)
+            {
+                result.Add (new GeoLocation (c.Latitude, c.Longitude));
+            }
+
 
             return result;
         }

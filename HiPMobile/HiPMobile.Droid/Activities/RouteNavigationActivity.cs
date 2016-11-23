@@ -142,7 +142,6 @@ namespace de.upb.hip.mobile.droid.Activities {
             position.Position = gpsLocation;
             position.SetInfoWindow (null);
             MapView.Overlays.Add (position);
-
         }
 
 
@@ -171,7 +170,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             mapController = (MapController) MapView.Controller;
             mapController.SetZoom (16);
             mapController.SetCenter (gpsLocation);
-            
+
 
             MapView.Invalidate ();
         }
@@ -186,15 +185,11 @@ namespace de.upb.hip.mobile.droid.Activities {
 
             //Add current position to road
             geoPoints.Add (new GeoPoint (gpsLocation.Latitude, gpsLocation.Longitude));
+
             //Calculate route
-            Stopwatch stopwatch = new Stopwatch();
+            var locations = routeCalculator.CreateRouteWithSeveralWaypoints (new GeoLocation (gpsLocation.Latitude, gpsLocation.Longitude), wayPoints);
 
-            // Begin timing
-            stopwatch.Start();
-            var locations = routeCalculator.CreateRouteWithSeveralWaypoints (new GeoLocation( gpsLocation.Latitude,gpsLocation.Longitude), wayPoints);
-            stopwatch.Stop();
 
-         System.Diagnostics.Debug.WriteLine("Time elapsed: {0}", stopwatch.ElapsedMilliseconds);
             foreach (var w in locations)
             {
                 var point = new GeoPoint (w.Latitude, w.Longitude);
@@ -202,13 +197,13 @@ namespace de.upb.hip.mobile.droid.Activities {
             }
 
             //Draw route
-            Polyline line = new Polyline(this);
-            line.Title = ("Test Line");
-            line.Width = (5f);
+            Polyline line = new Polyline (this);
+            line.Title = route.Title;
+            line.Width = 5f;
             line.Color = Color.Blue;
-            line.Points = (geoPoints);
-            line.Geodesic = (true);
-            MapView.Overlays.Add(line);
+            line.Points = geoPoints;
+            line.Geodesic = true;
+            MapView.Overlays.Add (line);
 
             //Add bubbles
             var wayPointMarkers = new FolderOverlay (Application.Context);
@@ -232,7 +227,6 @@ namespace de.upb.hip.mobile.droid.Activities {
                 nodeMarker.SetIcon (wayPointIcon);
                 wayPointMarkers.Add (nodeMarker);
             }
-
         }
 
 
