@@ -290,6 +290,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Content\Route_Network_Paderborn.pbf" />
     <EmbeddedResource Include="Content\Route_Network_Paderborn_01.pbf" />
+    <EmbeddedResource Include="Content\osmfile.routerdb" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

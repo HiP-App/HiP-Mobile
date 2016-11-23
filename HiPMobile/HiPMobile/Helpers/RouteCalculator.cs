@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Itinero;
+using Itinero.Data.Contracted;
 using Itinero.IO.Osm;
-using Itinero.LocalGeo;
 using Itinero.Osm.Vehicles;
+using OsmSharp;
+using OsmSharp.Streams;
 using Route = Itinero.Route;
 
 namespace de.upb.hip.mobile.pcl.Helpers {
@@ -19,21 +17,23 @@ namespace de.upb.hip.mobile.pcl.Helpers {
         private static Router routeRouter;
         private static IList<GeoLocation> route;
 
-        private static RouteCalculator instance = null;
+        private static RouteCalculator instance;
         private static readonly object padlock = new object ();
 
         //Initializes the database for the routing from pbf
-        public RouteCalculator ()
+        private RouteCalculator ()
         {
             routingDB = new RouterDb ();
-            routeRouter = new Router (routingDB);
 
-            //var assembly = Assembly.Load (new AssemblyName ("HiPMobilePCL"));
-            var assembly = typeof(pcl.Helpers.RouteCalculator).GetTypeInfo().Assembly;
-            Stream stream = assembly.GetManifestResourceStream ("de.upb.hip.mobile.pcl.Content.Route_Network_Paderborn_01.pbf");
+            var assembly = typeof(RouteCalculator).GetTypeInfo().Assembly;
+            using (Stream stream = assembly.GetManifestResourceStream("de.upb.hip.mobile.pcl.Content.osmfile.routerdb"))
+            {
+                routingDB = RouterDb.Deserialize(stream);
+            }
 
+            //Initialize Router after loading Deserializing is important, otherwise Profiles are not loaded properly
+            routeRouter = new Router(routingDB);
 
-            routingDB.LoadOsmData (stream, Vehicle.Pedestrian);
             route = new List<GeoLocation> ();
         }
 
@@ -62,12 +62,12 @@ namespace de.upb.hip.mobile.pcl.Helpers {
         public void CreateRouteWithSeveralWaypoints (GeoLocation userPosition, IList<Waypoint> listOfWayPoints)
         {
             //Contains all subroutes of the path
-            IList<Itinero.Route> routes = new List<Route> ();
+            IList<Route> routes = new List<Route> ();
             //starting distance with very high placeholder value
             double distance = 1000000;
             //is the location to compute next shortest waypoint
             GeoLocation currentLocation = userPosition;
-            Itinero.Route temp = null;
+            Route temp = null;
 
             foreach (Waypoint w in listOfWayPoints)
             {
