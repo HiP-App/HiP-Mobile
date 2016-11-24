@@ -14,13 +14,16 @@
  * limitations under the License.
  */
 
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using Android.App;
 using Android.Graphics;
 using Android.Locations;
 using Android.OS;
+using Android.Support.Design.Widget;
 using Android.Support.V4.Content;
 using Android.Support.V4.Content.Res;
 using Android.Support.V7.App;
@@ -51,7 +54,6 @@ namespace de.upb.hip.mobile.droid.Activities {
         private readonly int IndexNextWaypointNode = 1;
         private readonly string LogId = "RouteNavigationActivity";
         private double distanceWalked;
-        private IList<GeoPoint> geoPoints;
         private GeoPoint gpsLocation;
         protected ExtendedLocationListener GpsTracker;
 
@@ -69,6 +71,7 @@ namespace de.upb.hip.mobile.droid.Activities {
         protected Button TrackingModeButton;
         private IList<Waypoint> wayPoints;
         private RouteCalculator routeCalculator;
+        private Polyline currentRouteOverlay;
 
 
         public void LocationChanged (Location location)
@@ -82,8 +85,8 @@ namespace de.upb.hip.mobile.droid.Activities {
             if (distanceWalked > 20)
                 UpdateRoute (currentLocation);
             else
-                UpdateInstructions (currentLocation);
-            MapView.Invalidate ();
+                UpdateInstructions(currentLocation);
+                
         }
 
         protected override void OnCreate (Bundle savedInstanceState)
@@ -98,7 +101,6 @@ namespace de.upb.hip.mobile.droid.Activities {
             SupportActionBar.SetDisplayHomeAsUpEnabled (true);
             SupportActionBar.Title = "Navigation";
 
-            geoPoints = new List<GeoPoint> ();
             // getting location
             GpsTracker = ExtendedLocationListener.GetInstance ();
             GpsTracker.SetContext (this);
@@ -183,30 +185,10 @@ namespace de.upb.hip.mobile.droid.Activities {
             //Theses are the waypoints of the exhibits
             wayPoints = route.Waypoints;
 
-            //Add current position to road
-            geoPoints.Add (new GeoPoint (gpsLocation.Latitude, gpsLocation.Longitude));
+            CalculateRoute ();
 
-            //Calculate route
-            var locations = routeCalculator.CreateRouteWithSeveralWaypoints (new GeoLocation (gpsLocation.Latitude, gpsLocation.Longitude), wayPoints);
-
-
-            foreach (var w in locations)
-            {
-                var point = new GeoPoint (w.Latitude, w.Longitude);
-                geoPoints.Add (point);
-            }
-
-            //Draw route
-            Polyline line = new Polyline (this);
-            line.Title = route.Title;
-            line.Width = 5f;
-            line.Color = Color.Blue;
-            line.Points = geoPoints;
-            line.Geodesic = true;
-            MapView.Overlays.Add (line);
-
-            //Add bubbles
-            var wayPointMarkers = new FolderOverlay (Application.Context);
+             //Add bubbles
+             var wayPointMarkers = new FolderOverlay (Application.Context);
             MapView.Overlays.Add (wayPointMarkers);
             var wayPointIcon = ResourcesCompat.GetDrawable (Resources, Resource.Drawable.marker_via, null);
             //add bubbles
@@ -229,6 +211,63 @@ namespace de.upb.hip.mobile.droid.Activities {
             }
         }
 
+        private void CalculateRoute ()
+        {
+            ThreadPool.QueueUserWorkItem(state =>
+            {
+                var geoPoints = new List<GeoPoint> { new GeoPoint(gpsLocation.Latitude, gpsLocation.Longitude) };
+
+                Action action;
+
+                try
+                {
+                    var locations = routeCalculator.CreateRouteWithSeveralWaypoints (new GeoLocation (gpsLocation.Latitude, gpsLocation.Longitude), wayPoints);
+
+                    foreach (var w in locations)
+                    {
+                        var point = new GeoPoint(w.Latitude, w.Longitude);
+                        geoPoints.Add(point);
+                    }
+
+                    action = () => DrawRoute(geoPoints);
+                }
+                catch (Exception)
+                {
+                    action = ShowRouteCalculationError;
+                }
+
+                RunOnUiThread(() =>
+                {
+                    var handler = new Handler();
+                    handler.PostDelayed(action, 0);
+                });
+            });
+        }
+
+        private void ShowRouteCalculationError ()
+        {
+            Snackbar.Make(MapView, "This is a test", Snackbar.LengthLong).Show();
+        }
+
+        private void DrawRoute (List<GeoPoint> geoPoints)
+        {
+            //Cleanup route if drawn before
+            if (currentRouteOverlay != null)
+            {
+                MapView.Overlays.Remove(currentRouteOverlay);
+            }
+
+            currentRouteOverlay = new Polyline(this)
+            {
+                Title = route.Title,
+                Width = 5f,
+                Color = Color.Blue,
+                Points = geoPoints,
+                Geodesic = true
+            };
+            MapView.Overlays.Add(currentRouteOverlay);
+            MapView.Invalidate();
+        }
 
         private void UpdateRoute (GeoPoint currentLocation)
         {
@@ -236,6 +275,9 @@ namespace de.upb.hip.mobile.droid.Activities {
             distanceWalked = 0;
             position.Position = currentLocation;
             gpsLocation = currentLocation;
+            MapView.Invalidate();
+
+            CalculateRoute ();
         }
 
         private void UpdateInstructions (GeoPoint currentLocation)
@@ -243,6 +285,8 @@ namespace de.upb.hip.mobile.droid.Activities {
             position.Position = currentLocation;
             MapView.Overlays.Remove (position);
             MapView.Overlays.Add (position);
+
+            MapView.Invalidate();
         }
 
         protected override void OnPause ()

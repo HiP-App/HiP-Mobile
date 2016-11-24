@@ -1,16 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Itinero;
-using Itinero.Data.Contracted;
-using Itinero.IO.Osm;
 using Itinero.Osm.Vehicles;
-using OsmSharp;
-using OsmSharp.Streams;
-using Route = Itinero.Route;
-using System;
 using System.Linq;
 using Itinero.LocalGeo;
 
@@ -18,7 +12,6 @@ namespace de.upb.hip.mobile.pcl.Helpers {
     public sealed class RouteCalculator {
 
         private static Router routeRouter;
-        private static IList<GeoLocation> route;
 
         private static RouteCalculator instance;
         private static readonly object Padlock = new object ();
@@ -29,7 +22,7 @@ namespace de.upb.hip.mobile.pcl.Helpers {
         /// </summary>
         private RouteCalculator ()
         {
-           RouterDb routingDb = new RouterDb ();
+            RouterDb routingDb;
 
             var assembly = typeof (RouteCalculator).GetTypeInfo ().Assembly;
             using (Stream stream = assembly.GetManifestResourceStream ("de.upb.hip.mobile.pcl.Content.osmfile.routerdb"))
@@ -39,8 +32,6 @@ namespace de.upb.hip.mobile.pcl.Helpers {
 
             //Initialize Router after loading Deserializing is important, otherwise Profiles are not loaded properly
             routeRouter = new Router (routingDb);
-
-            route = new List<GeoLocation> ();
         }
 
         public static RouteCalculator Instance {
@@ -91,7 +82,6 @@ namespace de.upb.hip.mobile.pcl.Helpers {
             IList<GeoLocation> result = new List<GeoLocation> ();
             IList<Coordinate> locations = new List<Coordinate> ();
 
-
             locations.Add (new Coordinate ((float) userPosition.Latitude, (float) userPosition.Longitude));
 
             foreach (var v in listOfWayPoints)
@@ -99,14 +89,13 @@ namespace de.upb.hip.mobile.pcl.Helpers {
                 locations.Add (new Coordinate ((float) v.Location.Latitude, (float) v.Location.Longitude));
             }
 
+            var route = routeRouter.TryCalculate (Vehicle.Pedestrian.Fastest (), locations.ToArray ());
 
-            var route = routeRouter.Calculate (Vehicle.Pedestrian.Fastest (), locations.ToArray ());
-
-            foreach (Coordinate c in route.Shape)
+            foreach (Coordinate c in route.Value.Shape)
             {
-                result.Add (new GeoLocation (c.Latitude, c.Longitude));
+                result.Add(new GeoLocation(c.Latitude, c.Longitude));
             }
-
+            
 
             return result;
         }
