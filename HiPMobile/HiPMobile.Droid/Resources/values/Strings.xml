@@ -40,6 +40,8 @@ limitations under the License.-->
   <string name="route_activity_description">Beschreibung</string>
   <string name="route_activity_title">Titel</string>
 
+  <string name="route_navigation_activity_outside_paderborn">Die Navigation zu den Sehenswürdigkeiten ist nur innerhalb von Paderborn möglich.</string>
+
   <string name="splash_screen_loading">Historisches Paderborn wird geladen.</string>
   <string name="splash_screen_waiting">Einen Moment bitte…</string>
   <string name="splash_screen_retry">Erneut versuchen</string>

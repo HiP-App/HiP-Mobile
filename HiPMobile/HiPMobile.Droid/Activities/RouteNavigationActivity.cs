@@ -246,7 +246,7 @@ namespace de.upb.hip.mobile.droid.Activities {
 
         private void ShowRouteCalculationError ()
         {
-            Snackbar.Make(MapView, "This is a test", Snackbar.LengthLong).Show();
+            Snackbar.Make(MapView, Resources.GetString (Resource.String.route_navigation_activity_outside_paderborn), Snackbar.LengthLong).Show();
         }
 
         private void DrawRoute (List<GeoPoint> geoPoints)
