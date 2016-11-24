@@ -143,6 +143,21 @@ limitations under the License.-->
   <string name="licensing_fody_body_text">Von <a href="https://github.com/Fody/Fody">Simon Cropp</a>, lizensiert unter
     <a href="https://opensource.org/licenses/mit-license.php">MIT</a>. Es wurden keine Änderungen vorgenommen.
   </string>
+
+  <string name="licensing_itinero_title_text">Itinero</string>
+  <string name="licensing_itinero_body_text">Von <a href="https://github.com/Itinero">Ben Abelshausen</a>, lizensiert unter
+    <a href="https://opensource.org/licenses/Apache-2.0">Apache License 2.0</a> durch Erlaubnis. Es wurden keine Änderungen vorgenommen.
+  </string>
+  
+    <string name="licensing_osmsharp_title_text">OsmSharp</string>
+  <string name="licensing_osmsharp_body_text">Von <a href="https://osmsharp.com/">Ben Abelshausen</a>, lizensiert unter
+    <a href="https://opensource.org/licenses/mit-license.php">MIT</a>. Es wurden keine Änderungen vorgenommen.
+  </string>
+
+  <string name="licensing_remini_title_text">Reminiscence</string>
+  <string name="licensing_remini_body_text">Von <a href="https://github.com/itinero/reminiscence/">Ben Abelshausen</a>, lizensiert unter
+    <a href="https://opensource.org/licenses/mit-license.php">MIT</a>. Es wurden keine Änderungen vorgenommen.
+  </string>
   
 
   <!-- Strings for contribution -->

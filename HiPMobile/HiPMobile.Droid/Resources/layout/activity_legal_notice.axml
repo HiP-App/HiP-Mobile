@@ -74,199 +74,211 @@
                 style="@style/LegalNoticeContentStyle"
                 android:text="@string/licensing_mapicons_body_text"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
-
-
-          <TextView
+            <TextView
                 style="@style/LegalNoticeNameStyle"
                 android:text="@string/licensing_unity_title_text"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-          <TextView
-              android:id="@+id/licensingUnityBody"
-              style="@style/LegalNoticeContentStyle"
-              android:text="@string/licensing_unity_body_text"
-              android:textAppearance="?android:attr/textAppearanceSmall" />
-
-          <TextView
+            <TextView
+                android:id="@+id/licensingUnityBody"
+                style="@style/LegalNoticeContentStyle"
+                android:text="@string/licensing_unity_body_text"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+            <TextView
                 style="@style/LegalNoticeNameStyle"
                 android:text="@string/licensing_settingsplugin_title_text"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-          <TextView
-              android:id="@+id/licensingSettingspluginBody"
-              style="@style/LegalNoticeContentStyle"
-              android:text="@string/licensing_settingsplugin_body_text"
-              android:textAppearance="?android:attr/textAppearanceSmall" />
-
-
-          <TextView
+            <TextView
+                android:id="@+id/licensingSettingspluginBody"
+                style="@style/LegalNoticeContentStyle"
+                android:text="@string/licensing_settingsplugin_body_text"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+            <TextView
                 style="@style/LegalNoticeNameStyle"
                 android:text="@string/licensing_hockeyapp_title_text"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-          <TextView
-              android:id="@+id/licensingHockeyappBody"
-              style="@style/LegalNoticeContentStyle"
-              android:text="@string/licensing_hockeyapp_body_text"
-              android:textAppearance="?android:attr/textAppearanceSmall" />
-
-          <TextView
+            <TextView
+                android:id="@+id/licensingHockeyappBody"
+                style="@style/LegalNoticeContentStyle"
+                android:text="@string/licensing_hockeyapp_body_text"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+            <TextView
                 style="@style/LegalNoticeNameStyle"
                 android:text="@string/licensing_xamarinsupport_title_text"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-          <TextView
-              android:id="@+id/licensingXamarinSupportBody"
-              style="@style/LegalNoticeContentStyle"
-              android:text="@string/licensing_xamarinsupport_body_text"
-              android:textAppearance="?android:attr/textAppearanceSmall" />
-
-          <TextView
+            <TextView
+                android:id="@+id/licensingXamarinSupportBody"
+                style="@style/LegalNoticeContentStyle"
+                android:text="@string/licensing_xamarinsupport_body_text"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+            <TextView
                 style="@style/LegalNoticeNameStyle"
                 android:text="@string/licensing_commonservice_title_text"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-          <TextView
-              android:id="@+id/licensingCommonServiceBody"
-              style="@style/LegalNoticeContentStyle"
-              android:text="@string/licensing_commonservice_body_text"
-              android:textAppearance="?android:attr/textAppearanceSmall" />
-
-          <TextView
+            <TextView
+                android:id="@+id/licensingCommonServiceBody"
+                style="@style/LegalNoticeContentStyle"
+                android:text="@string/licensing_commonservice_body_text"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+            <TextView
                 style="@style/LegalNoticeNameStyle"
                 android:text="@string/licensing_fody_title_text"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
+            <TextView
+                android:id="@+id/licensingFodyBody"
+                style="@style/LegalNoticeContentStyle"
+                android:text="@string/licensing_fody_body_text"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
           <TextView
-              android:id="@+id/licensingFodyBody"
+                style="@style/LegalNoticeNameStyle"
+                android:text="@string/licensing_itinero_title_text"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+          <TextView
+              android:id="@+id/licensingItineroBody"
               style="@style/LegalNoticeContentStyle"
-              android:text="@string/licensing_fody_body_text"
+              android:text="@string/licensing_itinero_body_text"
               android:textAppearance="?android:attr/textAppearanceSmall" />
-
           <TextView
+                style="@style/LegalNoticeNameStyle"
+                android:text="@string/licensing_osmsharp_title_text"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+          <TextView
+              android:id="@+id/licensingOsmSharpBody"
+              style="@style/LegalNoticeContentStyle"
+              android:text="@string/licensing_osmsharp_body_text"
+              android:textAppearance="?android:attr/textAppearanceSmall" />
+          <TextView
+                style="@style/LegalNoticeNameStyle"
+                android:text="@string/licensing_remini_title_text"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+          <TextView
+              android:id="@+id/licensingReminiBody"
+              style="@style/LegalNoticeContentStyle"
+              android:text="@string/licensing_remini_body_text"
+              android:textAppearance="?android:attr/textAppearanceSmall" />
+            <TextView
                 style="@style/LegalNoticeHeadlineStyle"
                 android:text="@string/contribution_title"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
-          <View
+            <View
                 style="@style/Divider" />
-          
-          <TextView
+            <TextView
                 style="@style/LegalNoticeNameStyle"
                 android:text="@string/contribution_flaticon_title_text"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-          <TextView
-              style="@style/LegalNoticeContentStyle"
-              android:id="@+id/contributionForFlaticon"
-              android:text="@string/contribution_flaticon_body_text"
-              android:textAppearance="?android:attr/textAppearanceSmall" />
-          <TextView
+            <TextView
+                style="@style/LegalNoticeContentStyle"
+                android:id="@+id/contributionForFlaticon"
+                android:text="@string/contribution_flaticon_body_text"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+            <TextView
                 style="@style/LegalNoticeHeadlineStyle"
                 android:text="@string/nutzungsbedingungen_title_text"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
-          <View
+            <View
                 style="@style/Divider" />
-          <TextView
-              style="@style/LegalNoticeContentStyle"
-              android:text="@string/nutzungsbedingungen_text_a"
-              android:textAppearance="?android:attr/textAppearanceSmall" />
-          <TextView
+            <TextView
+                style="@style/LegalNoticeContentStyle"
+                android:text="@string/nutzungsbedingungen_text_a"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+            <TextView
                 style="@style/LegalNoticeNameStyle"
                 android:text="@string/nutzungsbedingungen_subtitle_a_text"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-          <TextView
-              style="@style/LegalNoticeContentStyle"
-              android:text="@string/nutzungsbedingungen_text_b"
-              android:textAppearance="?android:attr/textAppearanceSmall" />
-          <TextView
+            <TextView
+                style="@style/LegalNoticeContentStyle"
+                android:text="@string/nutzungsbedingungen_text_b"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+            <TextView
                 style="@style/LegalNoticeNameStyle"
                 android:text="@string/nutzungsbedingungen_subtitle_b_text"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-          <TextView
-              style="@style/LegalNoticeContentStyle"
-              android:text="@string/nutzungsbedingungen_text_c"
-              android:textAppearance="?android:attr/textAppearanceSmall" />
-          
-          <TextView
+            <TextView
+                style="@style/LegalNoticeContentStyle"
+                android:text="@string/nutzungsbedingungen_text_c"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+            <TextView
                 style="@style/LegalNoticeHeadlineStyle"
                 android:text="@string/datenschutz_title_text"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
-          <View
+            <View
                 style="@style/Divider" />
-          <TextView
-              style="@style/LegalNoticeContentStyle"
-              android:text="@string/datenschutz_text_a"
-              android:textAppearance="?android:attr/textAppearanceSmall" />
-          <TextView
+            <TextView
+                style="@style/LegalNoticeContentStyle"
+                android:text="@string/datenschutz_text_a"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+            <TextView
                 style="@style/LegalNoticeNameStyle"
                 android:text="@string/datenschutz_subtitle_a_text"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-          <TextView
-              style="@style/LegalNoticeContentStyle"
-              android:text="@string/datenschutz_text_b"
-              android:textAppearance="?android:attr/textAppearanceSmall" />
-          <TextView
-               style="@style/LegalNoticeNameStyle"
-               android:text="@string/datenschutz_subtitle_b_text"
-               android:textAppearance="?android:attr/textAppearanceMedium" />
-          <TextView
-              style="@style/LegalNoticeContentStyle"
-              android:text="@string/datenschutz_text_c"
-              android:textAppearance="?android:attr/textAppearanceSmall" />
-          <TextView
-               style="@style/LegalNoticeNameStyle"
-               android:text="@string/datenschutz_subtitle_c_text"
-               android:textAppearance="?android:attr/textAppearanceMedium" />
-          <TextView
-              style="@style/LegalNoticeContentStyle"
-              android:text="@string/datenschutz_text_d"
-              android:textAppearance="?android:attr/textAppearanceSmall" />
-          <TextView
-               style="@style/LegalNoticeNameStyle"
-               android:text="@string/datenschutz_subtitle_d_text"
-               android:textAppearance="?android:attr/textAppearanceMedium" />
-          <TextView
-              style="@style/LegalNoticeContentStyle"
-              android:text="@string/datenschutz_text_e"
-              android:textAppearance="?android:attr/textAppearanceSmall" />
-          <TextView
-               style="@style/LegalNoticeNameStyle"
-               android:text="@string/datenschutz_subtitle_e_text"
-               android:textAppearance="?android:attr/textAppearanceMedium" />
-          <TextView
-              style="@style/LegalNoticeContentStyle"
-              android:text="@string/datenschutz_text_f"
-              android:textAppearance="?android:attr/textAppearanceSmall" />
-          <TextView
-               style="@style/LegalNoticeNameStyle"
-               android:text="@string/datenschutz_subtitle_f_text"
-               android:textAppearance="?android:attr/textAppearanceMedium" />
-          <TextView
-              style="@style/LegalNoticeContentStyle"
-              android:text="@string/datenschutz_text_g"
-              android:textAppearance="?android:attr/textAppearanceSmall" />
-          <TextView
-               style="@style/LegalNoticeNameStyle"
-               android:text="@string/datenschutz_subtitle_g_text"
-               android:textAppearance="?android:attr/textAppearanceMedium" />
-          <TextView
-              style="@style/LegalNoticeContentStyle"
-              android:text="@string/datenschutz_text_h"
-              android:textAppearance="?android:attr/textAppearanceSmall" />
-          <TextView
-               style="@style/LegalNoticeNameStyle"
-               android:text="@string/datenschutz_subtitle_h_text"
-               android:textAppearance="?android:attr/textAppearanceMedium" />
-          <TextView
-              style="@style/LegalNoticeContentStyle"
-              android:text="@string/datenschutz_text_i"
-              android:textAppearance="?android:attr/textAppearanceSmall" />
-          
-          
-          
-          
-          <TextView
-              style="@style/LegalNoticeHeadlineStyle"
-              android:text="@string/impressum_title_text"
-              android:textAppearance="?android:attr/textAppearanceLarge" />
-          <TextView
-               style="@style/LegalNoticeNameStyle"
-               android:id="@+id/impressum"
-               android:text="@string/impressum_text_a"
-               android:textAppearance="?android:attr/textAppearanceSmall" />
+            <TextView
+                style="@style/LegalNoticeContentStyle"
+                android:text="@string/datenschutz_text_b"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+            <TextView
+                style="@style/LegalNoticeNameStyle"
+                android:text="@string/datenschutz_subtitle_b_text"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+            <TextView
+                style="@style/LegalNoticeContentStyle"
+                android:text="@string/datenschutz_text_c"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+            <TextView
+                style="@style/LegalNoticeNameStyle"
+                android:text="@string/datenschutz_subtitle_c_text"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+            <TextView
+                style="@style/LegalNoticeContentStyle"
+                android:text="@string/datenschutz_text_d"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+            <TextView
+                style="@style/LegalNoticeNameStyle"
+                android:text="@string/datenschutz_subtitle_d_text"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+            <TextView
+                style="@style/LegalNoticeContentStyle"
+                android:text="@string/datenschutz_text_e"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+            <TextView
+                style="@style/LegalNoticeNameStyle"
+                android:text="@string/datenschutz_subtitle_e_text"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+            <TextView
+                style="@style/LegalNoticeContentStyle"
+                android:text="@string/datenschutz_text_f"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+            <TextView
+                style="@style/LegalNoticeNameStyle"
+                android:text="@string/datenschutz_subtitle_f_text"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+            <TextView
+                style="@style/LegalNoticeContentStyle"
+                android:text="@string/datenschutz_text_g"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+            <TextView
+                style="@style/LegalNoticeNameStyle"
+                android:text="@string/datenschutz_subtitle_g_text"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+            <TextView
+                style="@style/LegalNoticeContentStyle"
+                android:text="@string/datenschutz_text_h"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+            <TextView
+                style="@style/LegalNoticeNameStyle"
+                android:text="@string/datenschutz_subtitle_h_text"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+            <TextView
+                style="@style/LegalNoticeContentStyle"
+                android:text="@string/datenschutz_text_i"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+            <TextView
+                style="@style/LegalNoticeHeadlineStyle"
+                android:text="@string/impressum_title_text"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+            <TextView
+                style="@style/LegalNoticeNameStyle"
+                android:id="@+id/impressum"
+                android:text="@string/impressum_text_a"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
