@@ -1,14 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
-using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using Itinero;
-using Itinero.Osm.Vehicles;
-using System.Linq;
-using Itinero.LocalGeo;
+﻿/*
+ * Copyright (C) 2016 History in Paderborn App - Universität Paderborn
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-namespace de.upb.hip.mobile.pcl.Helpers {
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using Itinero;
+using Itinero.LocalGeo;
+using Itinero.Osm.Vehicles;
+
+namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
     public sealed class RouteCalculator {
 
         private static Router routeRouter;
@@ -18,14 +31,14 @@ namespace de.upb.hip.mobile.pcl.Helpers {
 
 
         /// <summary>
-        /// Initializes the database for the routing from pbf
+        ///     Initializes the database for the routing from a serialited pbf file
         /// </summary>
         private RouteCalculator ()
         {
             RouterDb routingDb;
 
             var assembly = typeof (RouteCalculator).GetTypeInfo ().Assembly;
-            using (Stream stream = assembly.GetManifestResourceStream ("de.upb.hip.mobile.pcl.Content.osmfile.routerdb"))
+            using (var stream = assembly.GetManifestResourceStream ("de.upb.hip.mobile.pcl.Content.osmfile.routerdb"))
             {
                 routingDb = RouterDb.Deserialize (stream);
             }
@@ -39,9 +52,7 @@ namespace de.upb.hip.mobile.pcl.Helpers {
                 lock (Padlock)
                 {
                     if (instance == null)
-                    {
                         instance = new RouteCalculator ();
-                    }
                     return instance;
                 }
             }
@@ -49,7 +60,7 @@ namespace de.upb.hip.mobile.pcl.Helpers {
 
 
         /// <summary>
-        /// Simple route from start to endpoint
+        ///     Simple route from start to endpoint
         /// </summary>
         /// <param name="start">start position</param>
         /// <param name="end">end position</param>
@@ -61,17 +72,15 @@ namespace de.upb.hip.mobile.pcl.Helpers {
             var r = routeRouter.Calculate (Vehicle.Pedestrian.Fastest (),
                                            (float) start.Latitude, (float) start.Longitude, (float) end.Latitude, (float) end.Longitude);
 
-            foreach (Coordinate c in r.Shape)
-            {
+            foreach (var c in r.Shape)
                 result.Add (new GeoLocation (c.Latitude, c.Longitude));
-            }
 
             return result;
         }
 
 
         /// <summary>
-        /// This method calculates one route from several waypoints
+        ///     This method calculates one route from several waypoints
         /// </summary>
         /// <param name="userPosition">position of user</param>
         /// <param name="listOfWayPoints">list of all waypoints</param>
@@ -85,17 +94,13 @@ namespace de.upb.hip.mobile.pcl.Helpers {
             locations.Add (new Coordinate ((float) userPosition.Latitude, (float) userPosition.Longitude));
 
             foreach (var v in listOfWayPoints)
-            {
                 locations.Add (new Coordinate ((float) v.Location.Latitude, (float) v.Location.Longitude));
-            }
 
             var route = routeRouter.TryCalculate (Vehicle.Pedestrian.Fastest (), locations.ToArray ());
 
-            foreach (Coordinate c in route.Value.Shape)
-            {
-                result.Add(new GeoLocation(c.Latitude, c.Longitude));
-            }
-            
+            foreach (var c in route.Value.Shape)
+                result.Add (new GeoLocation (c.Latitude, c.Longitude));
+
 
             return result;
         }

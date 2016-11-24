@@ -82,7 +82,7 @@
     <Compile Include="DataLayer\RealmDataAccess.cs" />
     <Compile Include="DataLayer\RealmTransaction.cs" />
     <Compile Include="Helpers\MathUtil.cs" />
-    <Compile Include="Helpers\RouteCalculator.cs" />
+    <Compile Include="BusinessLayer\Models\NonGenerated\RouteCalculator.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
