@@ -21,6 +21,7 @@ using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
 using de.upb.hip.mobile.pcl.DataAccessLayer;
 using de.upb.hip.mobile.pcl.DataLayer;
+using de.upb.hip.mobile.pcl.Helpers;
 using Microsoft.Practices.Unity;
 using Realms;
 
@@ -33,6 +34,7 @@ namespace de.upb.hip.mobile.droid.Helpers {
 
         public void InsertData ()
         {
+            
             using (DbManager.StartTransaction ())
             {
                 ExhibitSet karlsrouteSet = DbManager.CreateBusinessObject<ExhibitSet> ();
