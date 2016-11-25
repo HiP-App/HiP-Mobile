@@ -82,7 +82,7 @@
     <Compile Include="DataLayer\RealmDataAccess.cs" />
     <Compile Include="DataLayer\RealmTransaction.cs" />
     <Compile Include="Helpers\MathUtil.cs" />
-    <Compile Include="BusinessLayer\Models\NonGenerated\RouteCalculator.cs" />
+    <Compile Include="BusinessLayer\Routing\RouteCalculator.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -288,9 +288,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Content\Route_Network_Paderborn.pbf" />
-    <EmbeddedResource Include="Content\Route_Network_Paderborn_01.pbf" />
-    <EmbeddedResource Include="Content\osmfile.routerdb" />
+    <EmbeddedResource Include="BusinessLayer\Routing\Route_Network_Paderborn.pbf" />
+    <EmbeddedResource Include="BusinessLayer\Routing\osmfile.routerdb" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

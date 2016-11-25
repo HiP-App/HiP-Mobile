@@ -17,18 +17,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Itinero;
 using Itinero.LocalGeo;
 using Itinero.Osm.Vehicles;
 
-namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
+namespace de.upb.hip.mobile.pcl.BusinessLayer.Routing {
+    /// <summary>
+    /// Class for routing operations
+    /// 
+    /// Implements Singleton pattern
+    /// </summary>
     public sealed class RouteCalculator {
 
         private static Router routeRouter;
 
         private static RouteCalculator instance;
         private static readonly object Padlock = new object ();
-
 
         /// <summary>
         ///     Initializes the database for the routing from a serialited pbf file
@@ -38,7 +43,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
             RouterDb routingDb;
 
             var assembly = typeof (RouteCalculator).GetTypeInfo ().Assembly;
-            using (var stream = assembly.GetManifestResourceStream ("de.upb.hip.mobile.pcl.Content.osmfile.routerdb"))
+            using (var stream = assembly.GetManifestResourceStream ("de.upb.hip.mobile.pcl.BusinessLayer.Routing.osmfile.routerdb"))
             {
                 routingDb = RouterDb.Deserialize (stream);
             }
@@ -47,6 +52,10 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
             routeRouter = new Router (routingDb);
         }
 
+
+        /// <summary>
+        /// Returns the Singleton
+        /// </summary>
         public static RouteCalculator Instance {
             get {
                 lock (Padlock)
@@ -57,7 +66,6 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
                 }
             }
         }
-
 
         /// <summary>
         ///     Simple route from start to endpoint
