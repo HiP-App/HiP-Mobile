@@ -162,7 +162,7 @@ namespace de.upb.hip.mobile.droid.Activities {
 
             MapView.SetTileSource (TileSourceFactory.Mapnik);
             MapView.TilesScaledToDpi = true;
-            MapView.SetBuiltInZoomControls (true);
+
 
             // mMap prefs:
             mapController = (MapController) MapView.Controller;
