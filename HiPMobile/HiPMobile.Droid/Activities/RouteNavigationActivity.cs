@@ -14,15 +14,18 @@
  * limitations under the License.
  */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Android.App;
+using Android.Graphics;
 using Android.Locations;
 using Android.OS;
+using Android.Support.Design.Widget;
 using Android.Support.V4.Content;
 using Android.Support.V4.Content.Res;
 using Android.Support.V7.App;
-using Android.Util;
 using Android.Views;
 using Android.Widget;
 using de.upb.hip.mobile.droid.Adapters;
@@ -30,7 +33,7 @@ using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.droid.Listeners;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using de.upb.hip.mobile.pcl.Common;
+using de.upb.hip.mobile.pcl.BusinessLayer.Routing;
 using Org.Osmdroid.Bonuspack.Overlays;
 using Org.Osmdroid.Bonuspack.Routing;
 using Org.Osmdroid.Tileprovider;
@@ -47,8 +50,8 @@ namespace de.upb.hip.mobile.droid.Activities {
         public const string IntentRoute = "route";
         private readonly int IndexNextWaypointNode = 1;
         private readonly string LogId = "RouteNavigationActivity";
+        private Polyline currentRouteOverlay;
         private double distanceWalked;
-        private IList<GeoPoint> geoPoints;
         private GeoPoint gpsLocation;
         protected ExtendedLocationListener GpsTracker;
 
@@ -63,6 +66,7 @@ namespace de.upb.hip.mobile.droid.Activities {
         private FolderOverlay roadMarkers;
         private Overlay roadOverlay;
         private Route route;
+        private RouteCalculator routeCalculator;
         protected Button TrackingModeButton;
         private IList<Waypoint> wayPoints;
 
@@ -72,22 +76,20 @@ namespace de.upb.hip.mobile.droid.Activities {
             var currentLocation = new GeoPoint (location);
             //calculate the distance walked from last positions
             distanceWalked = currentLocation.DistanceTo (gpsLocation);
-            var tempNode = (RoadNode) road.MNodes [IndexNextWaypointNode];
+
 
             //if distance > 20 m new request to mapquest
             if (distanceWalked > 20)
-                UpdateRoute (currentLocation, tempNode);
+                UpdateRoute (currentLocation);
             else
-                UpdateInstructions (currentLocation, tempNode);
-            MapView.Invalidate ();
+                UpdateInstructions (currentLocation);
         }
 
         protected override void OnCreate (Bundle savedInstanceState)
         {
             base.OnCreate (savedInstanceState);
             SetContentView (Resource.Layout.activity_route_navigation);
-
-            if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.Lollipop)
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
                 Window.AddFlags (WindowManagerFlags.DrawsSystemBarBackgrounds);
 
             var toolbar = (Toolbar) FindViewById (Resource.Id.toolbar);
@@ -95,7 +97,6 @@ namespace de.upb.hip.mobile.droid.Activities {
             SupportActionBar.SetDisplayHomeAsUpEnabled (true);
             SupportActionBar.Title = "Navigation";
 
-            geoPoints = new List<GeoPoint> ();
             // getting location
             GpsTracker = ExtendedLocationListener.GetInstance ();
             GpsTracker.SetContext (this);
@@ -103,6 +104,8 @@ namespace de.upb.hip.mobile.droid.Activities {
             GpsTracker.EnableLocationUpdates ();
             GpsTracker.EnableCheckForExhibits ();
             gpsLocation = new GeoPoint (GpsTracker.Latitude, GpsTracker.Longitude);
+
+            routeCalculator = RouteCalculator.Instance;
 
             // TODO Remove this as soon as no needs to run in emulator
             // set default coordinats for emulator
@@ -130,9 +133,6 @@ namespace de.upb.hip.mobile.droid.Activities {
             TrackingModeButton = (Button) FindViewById (Resource.Id.routeNavigationTrackingModeButton);
             TrackingModeButton.Click += (sender, args) => { mapController.SetCenter (gpsLocation); };
 
-            //Initiliazation of the Navigation
-            var tempNode = (RoadNode) road.MNodes [0];
-            distanceWalked = 0;
 
             //This Marker represents the position of the user
             position = new Marker (MapView);
@@ -140,17 +140,6 @@ namespace de.upb.hip.mobile.droid.Activities {
             position.Position = gpsLocation;
             position.SetInfoWindow (null);
             MapView.Overlays.Add (position);
-
-
-            //Set start Infos
-            var iconIds = Resources.ObtainTypedArray (Resource.Array.direction_icons);
-            var iconId = iconIds.GetResourceId (tempNode.MManeuverType, Resource.Drawable.ic_empty);
-            var image = ContextCompat.GetDrawable (this, iconId);
-
-            /*FindViewById<TextView> (Resource.Id.routeNavigationInstruction).Text = tempNode.MInstructions;
-            FindViewById<TextView> (Resource.Id.routeNavigationDistance).Text = Road.GetLengthDurationText (tempNode.MLength, tempNode.MDuration);
-            var ivManeuverIcon = (ImageView)FindViewById(Resource.Id.routeNavigationManeuverIcon);
-            ivManeuverIcon.SetImageBitmap(((BitmapDrawable)image).Bitmap);*/
         }
 
 
@@ -174,10 +163,12 @@ namespace de.upb.hip.mobile.droid.Activities {
             MapView.SetTileSource (TileSourceFactory.Mapnik);
             MapView.TilesScaledToDpi = true;
 
+
             // mMap prefs:
             mapController = (MapController) MapView.Controller;
             mapController.SetZoom (16);
             mapController.SetCenter (gpsLocation);
+
 
             MapView.Invalidate ();
         }
@@ -187,33 +178,10 @@ namespace de.upb.hip.mobile.droid.Activities {
             var policy = new StrictMode.ThreadPolicy.Builder ().PermitAll ().Build ();
             StrictMode.SetThreadPolicy (policy);
 
-            //Creates the RoadManager
-            var key = KeyManager.Instance.GetKey ("mapquest");
-            if (string.IsNullOrEmpty (key))
-                Log.Error (LogId, "Mapquest key is zero.");
-            roadManager = new MapQuestRoadManager (key);
-            roadManager.AddRequestOption ("routeType=pedestrian");
-            roadManager.AddRequestOption ("locale=de_DE");
-
             //Theses are the waypoints of the exhibits
             wayPoints = route.Waypoints;
 
-            //Add current position to road
-            geoPoints.Add (new GeoPoint (gpsLocation.Latitude, gpsLocation.Longitude));
-
-            foreach (var w in wayPoints)
-            {
-                var point = new GeoPoint (w.Location.Latitude, w.Location.Longitude);
-                geoPoints.Add (point);
-            }
-
-            //Get Road throw error if road not ok
-            road = roadManager.GetRoad (geoPoints);
-            if (road.MStatus != Road.StatusOk)
-                Toast.MakeText (Application.Context, "Error when loading the road - status=" + road.MStatus, ToastLength.Short).Show ();
-
-            roadOverlay = RoadManager.BuildRoadOverlay (road, Application.Context);
-            MapView.Overlays.Add (roadOverlay);
+            CalculateRoute ();
 
             //Add bubbles
             var wayPointMarkers = new FolderOverlay (Application.Context);
@@ -237,92 +205,82 @@ namespace de.upb.hip.mobile.droid.Activities {
                 nodeMarker.SetIcon (wayPointIcon);
                 wayPointMarkers.Add (nodeMarker);
             }
-
-
-            /* roadMarkers = new FolderOverlay (Application.Context);
-            MapView.Overlays.Add (roadMarkers);
-            var nodeIcon = ResourcesCompat.GetDrawable (Resources, Resource.Drawable.marker_node, null);
-            for (var i = 0; i < road.MNodes.Count; i++)
-            {
-                var node = (RoadNode) road.MNodes [i];
-                var nodeMarker = new Marker (MapView);
-                nodeMarker.Position = node.MLocation;
-                nodeMarker.SetIcon (nodeIcon);
-
-                //roadMarkers.Add (nodeMarker);
-            }*/
         }
 
+        private void CalculateRoute ()
+        {
+            ThreadPool.QueueUserWorkItem (state => {
+                                              var geoPoints = new List<GeoPoint> {new GeoPoint (gpsLocation.Latitude, gpsLocation.Longitude)};
 
-        private void UpdateRoute (GeoPoint currentLocation, RoadNode currentNode)
+                                              Action action;
+
+                                              try
+                                              {
+                                                  var locations = routeCalculator.CreateRouteWithSeveralWaypoints (new GeoLocation (gpsLocation.Latitude, gpsLocation.Longitude),
+                                                                                                                   wayPoints);
+
+                                                  foreach (var w in locations)
+                                                  {
+                                                      var point = new GeoPoint (w.Latitude, w.Longitude);
+                                                      geoPoints.Add (point);
+                                                  }
+
+                                                  action = () => DrawRoute (geoPoints);
+                                              }
+                                              catch (Exception)
+                                              {
+                                                  action = ShowRouteCalculationError;
+                                              }
+
+                                              RunOnUiThread (() => {
+                                                                 var handler = new Handler ();
+                                                                 handler.PostDelayed (action, 0);
+                                                             });
+                                          });
+        }
+
+        private void ShowRouteCalculationError ()
+        {
+            Toast.MakeText (ApplicationContext,
+                            Resources.GetString (Resource.String.route_navigation_activity_outside_paderborn), ToastLength.Long).Show ();
+        }
+
+        private void DrawRoute (List<GeoPoint> geoPoints)
+        {
+            //Cleanup route if drawn before
+            if (currentRouteOverlay != null)
+                MapView.Overlays.Remove (currentRouteOverlay);
+
+            currentRouteOverlay = new Polyline (this)
+            {
+                Title = route.Title,
+                Width = 5f,
+                Color = Color.Blue,
+                Points = geoPoints,
+                Geodesic = true
+            };
+            MapView.Overlays.Add (currentRouteOverlay);
+            MapView.Invalidate ();
+        }
+
+        private void UpdateRoute (GeoPoint currentLocation)
         {
             //reset distance
             distanceWalked = 0;
             position.Position = currentLocation;
-
-            /* geoPoints.RemoveAt (0);
-            geoPoints.Insert (0, currentLocation);
-
-            road = roadManager.GetRoad (geoPoints);
-            MapView.Overlays.Remove (roadOverlay);
-            roadOverlay = RoadManager.BuildRoadOverlay (road, Application.Context);
-            MapView.Overlays.Add (roadOverlay);
+            gpsLocation = currentLocation;
             MapView.Invalidate ();
 
-
-            position.Position = currentLocation;
-            MapView.Overlays.Remove (position);
-            MapView.Overlays.Remove (roadMarkers);
-            MapView.Overlays.Add (position);
-
-            roadMarkers = new FolderOverlay (Application.Context);
-
-            var nodeIcon = ResourcesCompat.GetDrawable (Resources, Resource.Drawable.marker_node, null);
-            for (var i = 1; i < road.MNodes.Count; i++)
-            {
-                var node = (RoadNode) road.MNodes [i];
-                var nodeMarker = new Marker (MapView);
-                nodeMarker.Position = node.MLocation;
-                nodeMarker.SetIcon (nodeIcon);
-
-                roadMarkers.Add (nodeMarker);
-            }
-
-            MapView.Overlays.Add (roadMarkers);
-
-
-            currentNode = (RoadNode) road.MNodes [IndexNextWaypointNode - 1];
-
-            var iconIds = Resources.ObtainTypedArray (Resource.Array.direction_icons);
-            var iconId = iconIds.GetResourceId (currentNode.MManeuverType, Resource.Drawable.ic_empty);
-            var image = ContextCompat.GetDrawable (this, iconId);
-
-            FindViewById<TextView> (Resource.Id.routeNavigationInstruction).Text = currentNode.MInstructions;
-            FindViewById<TextView> (Resource.Id.routeNavigationDistance).Text = Road.GetLengthDurationText (currentNode.MLength, currentNode.MDuration);
-            var ivManeuverIcon = (ImageView) FindViewById (Resource.Id.routeNavigationManeuverIcon);
-            ivManeuverIcon.SetImageBitmap (((BitmapDrawable) image).Bitmap);*/
-            gpsLocation = currentLocation;
+            CalculateRoute ();
         }
 
-        private void UpdateInstructions (GeoPoint currentLocation, RoadNode currentNode)
+        private void UpdateInstructions (GeoPoint currentLocation)
         {
             position.Position = currentLocation;
             MapView.Overlays.Remove (position);
             MapView.Overlays.Add (position);
 
-            //if the distance to the nex roadnode < 10 than update instructions to next node 
-            /* if (currentLocation.DistanceTo (currentNode.MLocation) <= 10)
-            {
-                var iconIds = Resources.ObtainTypedArray (Resource.Array.direction_icons);
-                var iconId = iconIds.GetResourceId (currentNode.MManeuverType, Resource.Drawable.ic_empty);
-                var image = ContextCompat.GetDrawable (this, iconId);
-
-                //we are not far away from the next marker set new instruction
-                FindViewById<TextView> (Resource.Id.routeNavigationInstruction).Text = currentNode.MInstructions;
-                FindViewById<TextView> (Resource.Id.routeNavigationDistance).Text = Road.GetLengthDurationText (currentNode.MLength, currentNode.MDuration);
-                var ivManeuverIcon = (ImageView) FindViewById (Resource.Id.routeNavigationManeuverIcon);
-                ivManeuverIcon.SetImageBitmap (((BitmapDrawable) image).Bitmap);
-            }*/
+            MapView.Invalidate ();
         }
 
         protected override void OnPause ()

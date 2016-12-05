@@ -61,6 +61,12 @@ namespace de.upb.hip.mobile.droid.Activities {
             ((TextView)FindViewById(Resource.Id.licensingCommonServiceBody)).MovementMethod = LinkMovementMethod.Instance;
             ((TextView)FindViewById(Resource.Id.contributionForFlaticon)).MovementMethod = LinkMovementMethod.Instance;
             ((TextView)FindViewById(Resource.Id.impressum)).MovementMethod = LinkMovementMethod.Instance;
+            ((TextView)FindViewById(Resource.Id.licensingOsmSharpBody)).MovementMethod = LinkMovementMethod.Instance;
+            ((TextView)FindViewById(Resource.Id.licensingItineroBody)).MovementMethod = LinkMovementMethod.Instance;
+            ((TextView)FindViewById(Resource.Id.licensingReminiBody)).MovementMethod = LinkMovementMethod.Instance;
+
+
+
 
 
         }

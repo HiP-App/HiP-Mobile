@@ -15,99 +15,95 @@
 using System;
 using System.Threading;
 using Android.App;
-using Android.Content;
+using Android.Content.PM;
+using Android.Content.Res;
 using Android.Locations;
 using Android.OS;
-using Android.Preferences;
-using Android.Views;
 using Android.Widget;
 using de.upb.hip.mobile.droid.Contracts;
-using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.droid.Listeners;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
+using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using de.upb.hip.mobile.pcl.BusinessLayer.Routing;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
 using de.upb.hip.mobile.pcl.DataAccessLayer;
 using de.upb.hip.mobile.pcl.DataLayer;
 using Microsoft.Practices.Unity;
-using Realms;
+using Orientation = Android.Content.Res.Orientation;
 
-namespace de.upb.hip.mobile.droid.Activities
-{
-    [Activity(Theme = "@style/AppTheme", MainLauncher = false, ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
-    public class SplashScreenActivity : Activity
-    {
+namespace de.upb.hip.mobile.droid.Activities {
+    [Activity (Theme = "@style/AppTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize)]
+    public class SplashScreenActivity : Activity {
 
         private const int StartupDelay = 0;
         private Action action;
+        private string DatabaseVersionKey = "DBVersion";
         private TextView textAction;
         private TextView textWaiting;
-        private string DatabaseVersionKey = "DBVersion";
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate (Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.activity_splash_screen);
+            base.OnCreate (savedInstanceState);
+            SetContentView (Resource.Layout.activity_splash_screen);
 
-            textAction = (TextView)FindViewById(Resource.Id.splashScreenActionText);
-            textWaiting = (TextView)FindViewById(Resource.Id.splashScreenWaitingText);
+            textAction = (TextView) FindViewById (Resource.Id.splashScreenActionText);
+            textWaiting = (TextView) FindViewById (Resource.Id.splashScreenWaitingText);
 
-            textAction.SetText(Resource.String.splash_screen_loading);
-            textWaiting.SetText(Resource.String.splash_screen_waiting);
+            textAction.SetText (Resource.String.splash_screen_loading);
+            textWaiting.SetText (Resource.String.splash_screen_waiting);
 
-            ThreadPool.QueueUserWorkItem(state =>
+            ThreadPool.QueueUserWorkItem (state => {
+                                              // setup IoCManager
+                                              IoCManager.UnityContainer.RegisterType<IDataAccess, RealmDataAccess> ();
+                                              IoCManager.UnityContainer.RegisterType<IDataLoader, EmbeddedResourceDataLoader> ();
+                                              IoCManager.UnityContainer.RegisterType<IImageDimension, AndroidImageDimension> ();
+                                              //IoCManager.UnityContainer.RegisterInstance (typeof(IDataLoader), new AndroidDataLoader (Assets));
+                                              var calculator = RouteCalculator.Instance;
+                                              // setup KeyManager
+                                              KeyManager.Instance.RegisterProvider (new AndroidKeyProvider ());
+
+                                              DbManager.UpdateDatabase ();
+
+                                              action = StartMainActivity;
+
+                                              //setup the ExtendedLocationListener by calling it once
+                                              var extendedLocationListener = ExtendedLocationListener.GetInstance ();
+                                              extendedLocationListener.SetContext (this);
+                                              extendedLocationListener.Initialize (GetSystemService (LocationService) as LocationManager);
+                                              extendedLocationListener.Unregister (); //the listener should just be created here, but not used
+
+                                              RunOnUiThread (() => {
+                                                                 var handler = new Handler ();
+                                                                 handler.PostDelayed (action, StartupDelay);
+                                                             });
+                                          });
+        }
+
+
+        private void StartMainActivity ()
+        {
+            StartActivity (typeof (MainActivity));
+            Finish ();
+        }
+
+        public override void OnConfigurationChanged (Configuration newConfig)
+        {
+            base.OnConfigurationChanged (newConfig);
+
+            if (newConfig.Orientation == Orientation.Portrait)
             {
-                // setup IoCManager
-                IoCManager.UnityContainer.RegisterType<IDataAccess, RealmDataAccess>();
-                IoCManager.UnityContainer.RegisterType<IDataLoader, EmbeddedResourceDataLoader> ();
-                IoCManager.UnityContainer.RegisterType<IImageDimension, AndroidImageDimension> ();
-                //IoCManager.UnityContainer.RegisterInstance (typeof(IDataLoader), new AndroidDataLoader (Assets));
-
-                // setup KeyManager
-                KeyManager.Instance.RegisterProvider (new AndroidKeyProvider ());
-
-                DbManager.UpdateDatabase ();
-
-                action = StartMainActivity;
-
-                //setup the ExtendedLocationListener by calling it once
-                ExtendedLocationListener extendedLocationListener = ExtendedLocationListener.GetInstance();
-                extendedLocationListener.SetContext(this);
-                extendedLocationListener.Initialize(GetSystemService(Context.LocationService) as LocationManager);
-                extendedLocationListener.Unregister();  //the listener should just be created here, but not used
-
-                RunOnUiThread(() =>
+            }
+            else
+                if (newConfig.Orientation == Orientation.Landscape)
                 {
-                    var handler = new Handler();
-                    handler.PostDelayed(action, StartupDelay);
-                });
-            });
-
-
+                }
         }
 
-
-        private void StartMainActivity()
+        protected override void OnDestroy ()
         {
-            StartActivity(typeof(MainActivity));
-            Finish();
+            base.OnDestroy ();
         }
 
-        public override void OnConfigurationChanged(Android.Content.Res.Configuration newConfig)
-        {
-            base.OnConfigurationChanged(newConfig);
-
-            if (newConfig.Orientation == Android.Content.Res.Orientation.Portrait)
-            {
-            }
-            else if (newConfig.Orientation == Android.Content.Res.Orientation.Landscape)
-            {
-            }
-        }
-
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
-        }
     }
 }
