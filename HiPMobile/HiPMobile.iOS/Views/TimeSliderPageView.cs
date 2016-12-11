@@ -10,7 +10,7 @@ namespace HiPMobile.iOS
     public partial class TimeSliderPageView : UIView
     {
         TimeSliderPage Page { get; set; }
-        FloatingTextView floatingText;
+       public FloatingTextView floatingText;
 
         public TimeSliderPageView (IntPtr handle) : base (handle)
         {
@@ -34,7 +34,8 @@ namespace HiPMobile.iOS
         void AddFloaingTextView()
         {
             // to think how to fix the magic numbers
-            CGRect frame = new CGRect(0, Frame.Height * 0.79f, Frame.Width, Frame.Height - Frame.Height * 0.79f);
+            CGRect frame = Frame;
+            frame.Y = UIScreen.MainScreen.Bounds.Height - 100;
             floatingText = FloatingTextView.Create();
             floatingText.Frame = frame;            
             AddSubview(floatingText);

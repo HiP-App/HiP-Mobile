@@ -28,14 +28,15 @@ namespace HiPMobile.iOS
         {
             var arr = NSBundle.MainBundle.LoadNib("FloatingTextView", null, null);
             var view = Runtime.GetNSObject<FloatingTextView>(arr.ValueAt(0));
+            view.TranslatesAutoresizingMaskIntoConstraints = true;
             return view;
         }
 
         public override void AwakeFromNib()
         {
             base.AwakeFromNib();
-            ViewBringDownY = Frame.Height * 0.79f;
-            ViewShiftUpY = Frame.Height - Frame.Height / 3f;
+            ViewBringDownY = UIScreen.MainScreen.Bounds.Height - 100;
+            ViewShiftUpY = UIScreen.MainScreen.Bounds.Height - 180;
 
             expandButton.TouchUpInside += delegate (object sender, EventArgs e)
             {
