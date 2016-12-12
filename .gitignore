@@ -11,3 +11,5 @@ obj
 packages/
 **/CodeGeneration.Log.xml
 !Bindings/CircularRevealBinding/CircularRevealBinding/bin/Debug/CircularRevealBinding.dll
+# misc. unecc. files and folders
+Tools/RealmWeaver.Fody.dll
