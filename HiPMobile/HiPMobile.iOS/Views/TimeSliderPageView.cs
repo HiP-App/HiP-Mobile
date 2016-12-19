@@ -7,16 +7,19 @@ using UIKit;
 
 namespace HiPMobile.iOS
 {
-    public partial class TimeSliderPageView : UIView
+    public partial class TimeSliderPageView : ExhibitDetailsPageView
     {
-        TimeSliderPage Page { get; set; }
-       public FloatingTextView floatingText;
+        TimeSliderPage TimeSliderPage {
+            get{
+                return Page.TimeSliderPage;
+            }
+        }
 
         public TimeSliderPageView (IntPtr handle) : base (handle)
         {
         }
 
-        public static TimeSliderPageView Create(TimeSliderPage page)
+        public static TimeSliderPageView Create(Page page)
         {
             var arr = NSBundle.MainBundle.LoadNib("TimeSliderPageView", null, null);
             var view = Runtime.GetNSObject<TimeSliderPageView>(arr.ValueAt(0));
@@ -25,31 +28,15 @@ namespace HiPMobile.iOS
             return view;
         }
 
-        public override void AwakeFromNib()
-        {
-            base.AwakeFromNib();
-            AddFloaingTextView();            
-        }
-
-        void AddFloaingTextView()
-        {
-            // to think how to fix the magic numbers
-            CGRect frame = Frame;
-            frame.Y = UIScreen.MainScreen.Bounds.Height - 100;
-            floatingText = FloatingTextView.Create();
-            floatingText.Frame = frame;            
-            AddSubview(floatingText);
-        }
-
-        NSAttributedString FormatPageText()
+        public NSAttributedString FormatPageText()
         {
             var titleAttributes = new UIStringAttributes
             {
                 Font = UIFont.BoldSystemFontOfSize(13)
             };
 
-            String title = Page.Title;
-            NSMutableAttributedString attributedString = new NSMutableAttributedString(title + "\n\n" + Page.Text);
+            String title = TimeSliderPage.Title;
+            NSMutableAttributedString attributedString = new NSMutableAttributedString(title + "\n\n" + TimeSliderPage.Text);
             attributedString.SetAttributes(titleAttributes, new NSRange(0, title.Length));
             return attributedString;
         }
@@ -62,7 +49,7 @@ namespace HiPMobile.iOS
 
         void populateViews()
         {
-            if(Page != null)
+            if(TimeSliderPage != null)
             {
                 if (floatingText != null)
                 {
@@ -70,20 +57,20 @@ namespace HiPMobile.iOS
                 }
 
                 timeSlider.MinimumValue = 0;
-                timeSlider.MaximumValue = Page.Dates.Count - 1;
+                timeSlider.MaximumValue = TimeSliderPage.Dates.Count - 1;
                 timeSlider.Value = 0;
                 timeSlider.ValueChanged += TimeSLiderValueChanged;
                 timeSlider.Step = 1f;
 
-                SetImage(Page.Images[(int)timeSlider.Value]);
-                sliderLabel.Text = Page.Images[(int)timeSlider.Value].Description;
+                SetImage(TimeSliderPage.Images[(int)timeSlider.Value]);
+                sliderLabel.Text = TimeSliderPage.Images[(int)timeSlider.Value].Description;
             }
         }
 
         void TimeSLiderValueChanged(Object sender, EventArgs e)
         {
-            SetImage(Page.Images[(int)timeSlider.Value]);
-            sliderLabel.Text = Page.Images[(int)timeSlider.Value].Description;
+            SetImage(TimeSliderPage.Images[(int)timeSlider.Value]);
+            sliderLabel.Text = TimeSliderPage.Images[(int)timeSlider.Value].Description;
         }
     }
 }

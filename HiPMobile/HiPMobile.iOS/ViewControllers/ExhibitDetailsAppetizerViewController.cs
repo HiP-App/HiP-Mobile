@@ -39,6 +39,11 @@ namespace HiPMobile.iOS
                 appetizerTextView.AttributedText = attributedString;
             }
             NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
+
+            if (Exhibit.Pages.Count <= 1)
+            {
+                forwardButton.Enabled = false;
+            }
         }
 
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)

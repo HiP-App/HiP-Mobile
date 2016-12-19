@@ -257,10 +257,16 @@
     <BundleResource Include="Resources\base.lproj\Localizable.strings" />
     <InterfaceDefinition Include="Views\OsmMapView.xib" />
     <InterfaceDefinition Include="Views\TimeSliderPageView.xib" />
+    <InterfaceDefinition Include="Views\ImagePageView.xib" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Delegates\OsmMapViewDelegate.cs" />
     <Compile Include="Delegates\PagingScrollViewSource.cs" />
+    <Compile Include="Views\ExhibitDetailsPageView.cs" />
+    <Compile Include="Views\ImagePageView.cs" />
+    <Compile Include="Views\ImagePageView.designer.cs">
+      <DependentUpon>ImagePageView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\TimeSliderPageView.cs" />
     <Compile Include="Views\TimeSliderPageView.designer.cs">
       <DependentUpon>TimeSliderPageView.cs</DependentUpon>

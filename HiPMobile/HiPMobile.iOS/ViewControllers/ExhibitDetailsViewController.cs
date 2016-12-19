@@ -18,12 +18,14 @@ namespace HiPMobile.iOS
 
         public override void ViewDidLoad()
         {
+            exhibitDetailsScrollView.TranslatesAutoresizingMaskIntoConstraints = false;
             exhibitDetailsScrollView.Frame = new CoreGraphics.CGRect(0, 0, View.Frame.Width, View.Frame.Height);
-            exhibitDetailsScrollView.ContentSize = new CoreGraphics.CGSize(exhibitDetailsScrollView.Frame.Size.Width * Exhibit.Pages.Count, exhibitDetailsScrollView.Frame.Size.Height);
+            exhibitDetailsScrollView.ContentSize = new CoreGraphics.CGSize(exhibitDetailsScrollView.Frame.Size.Width * (Exhibit.Pages.Count - 1), exhibitDetailsScrollView.Frame.Size.Height);
             //exhibitDetailsScrollView.BackgroundColor = UIColor.Black;
             base.ViewDidLoad();
             ScrollViewSource scrollViewSource = new ScrollViewSource();
             scrollViewSource.DetailPages = Exhibit.Pages;
+            scrollViewSource.DetailPages.RemoveAt(0);
             // scrollViewSource.PageChanged += PageChanged; //will be needed for the audio control 
             exhibitDetailsScrollView.Delegate = scrollViewSource;
             scrollViewSource.LoadInitialViews(exhibitDetailsScrollView);
@@ -43,7 +45,7 @@ namespace HiPMobile.iOS
         //{
         //    NavigationItem.Title = page.ToString();
         //}
-
+                
         private class ScrollViewSource : PagingScrollViewSource
         {
             public IList<Page> DetailPages;
@@ -63,7 +65,13 @@ namespace HiPMobile.iOS
                 //<-init view from xib instead this
                 if (page.TimeSliderPage != null)
                 {
-                    pageView = TimeSliderPageView.Create(page.TimeSliderPage);                   
+                    pageView = TimeSliderPageView.Create(page);                   
+                } else
+                {
+                    if (page.ImagePage != null)
+                    {
+                        pageView = ImagePageView.Create(page);
+                    }
                 }
 
                 return pageView;
