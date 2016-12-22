@@ -38,6 +38,7 @@ namespace HiPMobile.iOS
                 attributedString.SetAttributes(titleAttributes, new NSRange(0, ExhibitTitle.Length));
                 appetizerTextView.AttributedText = attributedString;
             }
+            NavigationItem.BackBarButtonItem = new UIBarButtonItem("", UIBarButtonItemStyle.Plain, null);
         }
 
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
