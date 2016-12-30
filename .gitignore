@@ -1,8 +1,15 @@
+# GIT's ignored files and folders
+
+# build artifacs and intermediary files
 bin
 obj
+# VS config files
 .vs/
 *.htm
 *.user
+# NuGet Packages
 packages/
 **/CodeGeneration.Log.xml
 !Bindings/CircularRevealBinding/CircularRevealBinding/bin/Debug/CircularRevealBinding.dll
+# misc. unecc. files and folders
+Tools/RealmWeaver.Fody.dll
