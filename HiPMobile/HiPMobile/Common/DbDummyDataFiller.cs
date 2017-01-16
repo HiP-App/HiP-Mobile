@@ -30,7 +30,7 @@ namespace de.upb.hip.mobile.droid.Helpers {
 
         private readonly IDataLoader dataLoader = IoCManager.UnityContainer.Resolve<IDataLoader> ();
 
-        public static int DatabaseVersion { get; } = 1;
+        public static int DatabaseVersion { get; } = 2;
 
         public void InsertData ()
         {
@@ -38,9 +38,10 @@ namespace de.upb.hip.mobile.droid.Helpers {
             using (DbManager.StartTransaction ())
             {
                 ExhibitSet karlsrouteSet = DbManager.CreateBusinessObject<ExhibitSet> ();
-                Image kaiserPfalzImage = CreateImage ("Die Pfalz Karls des Großen", "Die Überreste der Kaiserpflaz von Westen aus betrachtet.", "kaiserpfalz_teaser.jpg");
+                Image kaiserPfalzteaserImage = CreateImage ("Die Pfalz Karls des Großen", "Die Überreste der Kaiserpflaz von Westen aus betrachtet.", "kaiserpfalz_teaser1.jpg");
+                Image kaiserPfalzImage = CreateImage("Die Pfalz Karls des Großen", "Die Überreste der Kaiserpflaz von Westen aus betrachtet.", "kaiserpfalz_teaser.jpg");
                 Exhibit kaiserpfalz = CreateExhibit ("Die Pfalz Karls des Großen", "", 51.7189826, 8.754652599999986,
-                                                     new[] {"Kirche"}, new[] {"Dom"}, kaiserPfalzImage);
+                                                     new[] {"Kirche"}, new[] {"Dom"}, kaiserPfalzteaserImage);
 
 
                 kaiserpfalz.Pages.Add (CreateAppetizerPage ("Ein befestigter Stützpunkt in Sachsen – Aufbau und Entwicklung.",
@@ -163,65 +164,74 @@ namespace de.upb.hip.mobile.droid.Helpers {
                                      "Eine 3D-Rekonstruktion der karolingischen Pfalz stellt uns freundlicherweise das Museum in der Kaiserpfalz zur Verfügung. Das dreieinhalbminütige Video können Sie nun auf Ihrem Display ansehen.\n Es visualisiert einen denkbaren Zustand der Pfalz im Jahre 799.",
                                      "")));
 
-                var mariensaeuleImage = CreateImage ("", "Die Mariensäule", "mariensaeule_teaser.jpg");
+                var mariensaeuleImage = CreateImage ("", "Die Mariensäule", "mariensaeule_teaser1.jpg");
+                var mariensaeuleteaserImage = CreateImage("", "Die Mariensäule", "mariensaeule_teaser.jpg");
                 Exhibit mariensaeule = CreateExhibit ("Die Mariensäule", "", 51.716724, 8.752244000000019,
-                                                      new[] {"Kirch"}, new[] {"Dom"}, mariensaeuleImage);
+                                                      new[] {"Kirch"}, new[] {"Dom"}, mariensaeuleteaserImage);
                 mariensaeule.Pages.Add (CreateAppetizerPage ("Startpunkt der Rundgänge: Hl. Liborius, Karl der Große, Meinwerk von Paderborn.",
                                                              mariensaeuleImage));
                 karlsrouteSet.ActiveSet.Add (mariensaeule);
 
-                var paderquellen1Image = CreateImage ("", "Paderbrunnon, Patresbrun, Paderbrunno", "quellen1_teaser.jpg");
+                var paderquellen1TeaserImage = CreateImage ("", "Paderbrunnon, Patresbrun, Paderbrunno", "quellen1_teaser1.jpg");
+                var paderquellen1Image = CreateImage("", "Paderbrunnon, Patresbrun, Paderbrunno", "quellen1_teaser.jpg");
                 Exhibit paderquellen1 = CreateExhibit ("Paderbrunnon, Patresbrun, Paderbrunno", "", 51.71861412677083, 8.75122457742691,
-                                                       new[] {"Kirche"}, new[] {"Dom"}, paderquellen1Image);
+                                                       new[] {"Kirche"}, new[] {"Dom"}, paderquellen1TeaserImage);
                 paderquellen1.Pages.Add (CreateAppetizerPage ("Die Siedlung an den 200 Quellen. Woher kommt eigentlich der Name Paderborn?",
                                                               paderquellen1Image));
                 karlsrouteSet.ActiveSet.Add (paderquellen1);
 
-                var paderquellen2Image = CreateImage ("", "Leben am Wasser", "quellen2_teaser.jpg");
+                var paderquellen2TeaserImage = CreateImage ("", "Leben am Wasser", "quellen2_teaser2.jpg");
+                var paderquellen2Image = CreateImage("", "Leben am Wasser", "quellen2_teaser.jpg");
                 Exhibit paderquellen2 = CreateExhibit ("Leben am Wasser", "", 51.718811867802174, 8.751070350408554,
-                                                       new[] {"Kirche"}, new[] {"Dom"}, paderquellen2Image);
+                                                       new[] {"Kirche"}, new[] {"Dom"}, paderquellen2TeaserImage);
            
                 paderquellen2.Pages.Add (CreateAppetizerPage ("Paderborn – so schön wie das Land, in dem Milch und Honig fließen?",
                                                               paderquellen2Image));
                 karlsrouteSet.ActiveSet.Add (paderquellen2);
 
-                var paderquellen3Image = CreateImage ("", "Taufen an der Pader?", "quellen3_teaser.jpg");
+                var paderquellen3TeaserImage = CreateImage ("", "Taufen an der Pader?", "quellen3_teaser3.jpg");
+                var paderquellen3Image = CreateImage("", "Taufen an der Pader?", "quellen3_teaser.jpg");
                 Exhibit paderquellen3 = CreateExhibit ("Taufen an der Pader?", "", 51.71955795852887, 8.751071691513062,
-                                                       new[] {"Kirche"}, new[] {"Dom"}, paderquellen3Image);
+                                                       new[] {"Kirche"}, new[] {"Dom"}, paderquellen3TeaserImage);
                 paderquellen3.Pages.Add (CreateAppetizerPage ("Donar, Wotan und Saxnot – die Abkehr von den alten Göttern.", paderquellen3Image));
                 karlsrouteSet.ActiveSet.Add (paderquellen3);
 
-                var brueckehausImage = CreateImage ("", "Sachsenkriege", "bruecke_teaser.jpg");
+                var brueckehausteaserImage = CreateImage ("", "Sachsenkriege", "bruecke_teaser1.jpg");
+                var brueckehausImage = CreateImage("", "Sachsenkriege", "bruecke_teaser.jpg");
                 Exhibit brueckeBrauhaus = CreateExhibit ("Sachsenkriege", "", 51.719582883396335, 8.751005977392197,
-                                                         new[] {"Kirche"}, new[] {"Dom"}, brueckehausImage);
+                                                         new[] {"Kirche"}, new[] {"Dom"}, brueckehausteaserImage);
                 brueckeBrauhaus.Pages.Add (CreateAppetizerPage ("Karl der Große und die Sachsen – dreißig Jahre Krieg!",
                                                                 brueckehausImage));
                 karlsrouteSet.ActiveSet.Add (brueckeBrauhaus);
 
-                var geisselscherGartenImage = CreateImage ("", "Christianisierung der Sachsen", "garten_teaser.jpg");
+                var geisselscherGartenteaserImage = CreateImage ("", "Christianisierung der Sachsen", "garten_teaser.jpg");
+                var geisselscherGartenImage = CreateImage("", "Christianisierung der Sachsen", "garten_teaser.jpg");
                 Exhibit geisselscherGarten = CreateExhibit ("Christianisierung der Sachsen", "", 51.72050841708062, 8.75171273946762,
-                                                            new[] {"Kirche"}, new[] {"Dom"}, geisselscherGartenImage);
+                                                            new[] {"Kirche"}, new[] {"Dom"}, geisselscherGartenteaserImage);
                 geisselscherGarten.Pages.Add (CreateAppetizerPage ("Karls neue Strategie: Tod oder Taufe?",
                                                                    geisselscherGartenImage));
                 karlsrouteSet.ActiveSet.Add (geisselscherGarten);
 
-                var stadtbilbiothekImage = CreateImage ("", "Karls Sieg über die Sachsen", "bibliothek_teaser.jpg");
+                var stadtbilbiothekteaserImage = CreateImage ("", "Karls Sieg über die Sachsen", "bibliothek_teaser1.jpg");
+                var stadtbilbiothekImage = CreateImage("", "Karls Sieg über die Sachsen", "bibliothek_teaser.jpg");
                 Exhibit stadtbibliothek = CreateExhibit ("Karls Sieg über die Sachsen", "", 51.718953, 8.75583,
-                                                         new[] {"Kirche"}, new[] {"Dom"}, stadtbilbiothekImage);
+                                                         new[] {"Kirche"}, new[] {"Dom"}, stadtbilbiothekteaserImage);
                 stadtbibliothek.Pages.Add (CreateAppetizerPage ("Sachsen wird Teil des Frankenreiches.",
                                                                 stadtbilbiothekImage));
                 karlsrouteSet.ActiveSet.Add (stadtbibliothek);
 
-                var domImage = CreateImage ("", "Karl der Große im Wandel der Zeit", "dom_teaser.jpg");
+                var domteaserImage = CreateImage ("", "Karl der Große im Wandel der Zeit", "dom_teaser1.jpg");
+                var domImage = CreateImage("", "Karl der Große im Wandel der Zeit", "dom_teaser.jpg");
                 Exhibit dom = CreateExhibit ("Karl der Große im Wandel der Zeit", "", 51.7199006, 8.754952000000003,
-                                             new[] {"Kirche"}, new[] {"Dom"}, domImage);
+                                             new[] {"Kirche"}, new[] {"Dom"}, domteaserImage);
                 dom.Pages.Add (CreateAppetizerPage ("Der Blick auf Karl den Großen: Christ, Frankenkönig, Imperator, Heiliger.",
                                                     domImage));
                 karlsrouteSet.ActiveSet.Add (dom);
 
-                var theoImage = CreateImage ("", "Karl der Große macht Schule!", "theo_teaser.jpg");
+                var theoTeaserImage = CreateImage ("", "Karl der Große macht Schule!", "theo_teaser1.jpg");
+                var theoImage = CreateImage("", "Karl der Große macht Schule!", "theo_teaser.jpg");
                 Exhibit theodoranium = CreateExhibit ("Karl der Große macht Schule!", "", 51.71601, 8.754249999999956,
-                                                      new[] {"Kirche"}, new[] {"Dom"}, theoImage);
+                                                      new[] {"Kirche"}, new[] {"Dom"}, theoTeaserImage);
                 theodoranium.Pages.Add (CreateAppetizerPage ("Was hat Karl der Große mit Schule, Schrift und Bildung zu tun?",
                                                              theoImage));
 
