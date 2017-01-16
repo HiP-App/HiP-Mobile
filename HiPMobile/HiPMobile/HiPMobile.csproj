@@ -171,7 +171,7 @@
     <EmbeddedResource Include="Content\Kaiserpfalz\liboriuskapelle.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Content\Kaiserpfalz\mariensaeule_teaser.jpg" />
+    <EmbeddedResource Include="Content\Kaiserpfalz\mariensaeule_teaser1.jpg" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Content\Kaiserpfalz\pfalz.jpg" />
@@ -237,7 +237,6 @@
     <EmbeddedResource Include="Content\Kaiserpfalz\theo_teaser1.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Content\Kaiserpfalz\mariensaeule_teaser1.jpg" />
     <EmbeddedResource Include="Content\Kaiserpfalz\bibliothek_teaser.jpg" />
     <EmbeddedResource Include="Content\Kaiserpfalz\bruecke_teaser.jpg" />
     <EmbeddedResource Include="Content\Kaiserpfalz\dom_teaser.jpg" />
@@ -247,6 +246,7 @@
     <EmbeddedResource Include="Content\Kaiserpfalz\quellen2_teaser.jpg" />
     <EmbeddedResource Include="Content\Kaiserpfalz\quellen3_teaser.jpg" />
     <EmbeddedResource Include="Content\Kaiserpfalz\theo_teaser.jpg" />
+    <EmbeddedResource Include="Content\Kaiserpfalz\mariensaeule_teaser.jpg" />
     <Content Include="FodyWeavers.xml">
       <SubType>Designer</SubType>
     </Content>

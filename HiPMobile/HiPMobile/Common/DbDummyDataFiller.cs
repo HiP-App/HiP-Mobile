@@ -164,8 +164,8 @@ namespace de.upb.hip.mobile.droid.Helpers {
                                      "Eine 3D-Rekonstruktion der karolingischen Pfalz stellt uns freundlicherweise das Museum in der Kaiserpfalz zur Verfügung. Das dreieinhalbminütige Video können Sie nun auf Ihrem Display ansehen.\n Es visualisiert einen denkbaren Zustand der Pfalz im Jahre 799.",
                                      "")));
 
-                var mariensaeuleImage = CreateImage ("", "Die Mariensäule", "mariensaeule_teaser1.jpg");
-                var mariensaeuleteaserImage = CreateImage("", "Die Mariensäule", "mariensaeule_teaser.jpg");
+                var mariensaeuleImage = CreateImage ("", "Die Mariensäule", "mariensaeule_teaser.jpg");
+                var mariensaeuleteaserImage = CreateImage("", "Die Mariensäule", "mariensaeule_teaser1.jpg");
                 Exhibit mariensaeule = CreateExhibit ("Die Mariensäule", "", 51.716724, 8.752244000000019,
                                                       new[] {"Kirch"}, new[] {"Dom"}, mariensaeuleteaserImage);
                 mariensaeule.Pages.Add (CreateAppetizerPage ("Startpunkt der Rundgänge: Hl. Liborius, Karl der Große, Meinwerk von Paderborn.",
@@ -204,7 +204,7 @@ namespace de.upb.hip.mobile.droid.Helpers {
                                                                 brueckehausImage));
                 karlsrouteSet.ActiveSet.Add (brueckeBrauhaus);
 
-                var geisselscherGartenteaserImage = CreateImage ("", "Christianisierung der Sachsen", "garten_teaser.jpg");
+                var geisselscherGartenteaserImage = CreateImage ("", "Christianisierung der Sachsen", "garten_teaser1.jpg");
                 var geisselscherGartenImage = CreateImage("", "Christianisierung der Sachsen", "garten_teaser.jpg");
                 Exhibit geisselscherGarten = CreateExhibit ("Christianisierung der Sachsen", "", 51.72050841708062, 8.75171273946762,
                                                             new[] {"Kirche"}, new[] {"Dom"}, geisselscherGartenteaserImage);
