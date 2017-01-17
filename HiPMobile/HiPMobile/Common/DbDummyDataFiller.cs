@@ -45,7 +45,7 @@ namespace de.upb.hip.mobile.droid.Helpers {
 
 
                 kaiserpfalz.Pages.Add (CreateAppetizerPage ("Ein befestigter Stützpunkt in Sachsen – Aufbau und Entwicklung.",
-                                                            kaiserPfalzImage));
+                                                            kaiserPfalzteaserImage));
 
                 var audio1 = CreateAudio ("sprechertext_1.mp3",
                                           "Während des bisherigen Rundgangs haben Sie erfahren, wie wichtig das Gebiet zwischen Lippe und Pader für die Politik Karls des Großen ab den 770er Jahren war. Erinnern wir uns nur an die große Reichsversammlung im Jahre 777! Zu diesem Anlass fanden sich Franken, Sachsen, aber auch arabische Gesandte aus Spanien hier in Paderborn zusammen.\nAber was fanden diese Personen hier vor? Wie hat man sich das damalige Paderborn, die sogenannte „urbs Karoli“, eigentlich vorzustellen? Lange Zeit fragten sich Historiker und Archäologen, ob die „urbs Karoli“ tatsächlich in Paderborn existierte und wenn ja, wo genau? <fn> Einen Überblick über die hierzu geäußerten Vermutungen bietet Birgit Mecke: Der Stand der Forschungen vor den Grabungskampagnen Winkelmanns, in: Sveva Gai / Birgit Mecke: Est locus insignis…: Die Pfalz Karls des Großen in Paderborn und ihre bauliche Entwicklung bis zum Jahr 1002. Die Neuauswertung der Ausgrabungen Wilhelm Winkelmanns in den Jahren 1964-1978 (Denkmalpflege und Forschung in Westfalen 40,2), Mainz 2004, Bd. 1, S. 1-8. </fn> Die karolingischen Geschichtswerke sprechen für Paderborn nicht von palatium, dem lateinischen Wort für „Pfalz“. Und es gab auch keine archäologischen Anhaltspunkte für die Pfalz Karls des Großen in Paderborn. Noch Mitte des 20. Jahrhunderts schrieb der Akademieprofessor und Domkapitular Alois Fuchs, dass „für eine [karolingische] Pfalz in Paderborn nicht nur alle urkundlichen Bezeugungen fehlen, sondern auch alle Baureste, die für die charakteristischen Pfalzgebäude, den Reichssaal und die Pfalzkapelle, sprechen könnten <fn>Alois A. Fuchs: Zur Frage der Bautätigkeit des Bischofs Badurad am Paderborner Dom, in: Westfälische Zeitschrift 97 (1947), S. 3-34, hier S. 5. </fn>.“  Sichtbar waren einzig verbaute Überreste der Domburg Bischof Meinwerks aus dem 11. Jahrhundert. Diese Überreste hatten bereits Mitte des 19. Jahrhunderts das Interesse von Lokalforschern geweckt <fn>Vgl. J. B. Johann Bernhard Greve: Der kaiserliche und bischöfliche Palast in Paderborn, in: Blätter zur näheren Kunde Westfalens 6/4 (1868), S. 33-38.</fn>.\nJetzt stehen Sie zwischen dem Dom und dem Museum in der Kaiserpfalz. Dieses große und repräsentative Gebäude mit den Rundbogenfenstern sieht so aus, wie man sich eine Kaiserpfalz vorstellt. Doch handelt es sich dabei um die Pfalz Karls des Großen? Nein! Es ist die archäologische Rekonstruktion der Pfalz Bischof Meinwerks aus dem frühen 11. Jahrhundert. \n Aber wo befand sich nun die karolingische Kaiserpfalz? Sehen Sie die etwa 31 mal 10 m große, rechteckige Fläche zwischen Ihnen und dem Museum? Sie ist durch Bruchsteinmauern abgegrenzt. Das sind die aus konservatorischen Gründen aufgemauerten Fundamente der sog. aula regia, der Königshalle Karls des Großen. Wenn Sie genau hinschauen, sehen Sie ein rotes Ziegelband. Dieses trennt das originale Bruchsteinmauerwerk von später, im Zuge der Rekonstruktion ergänzten Steinen.",
@@ -164,76 +164,69 @@ namespace de.upb.hip.mobile.droid.Helpers {
                                      "Eine 3D-Rekonstruktion der karolingischen Pfalz stellt uns freundlicherweise das Museum in der Kaiserpfalz zur Verfügung. Das dreieinhalbminütige Video können Sie nun auf Ihrem Display ansehen.\n Es visualisiert einen denkbaren Zustand der Pfalz im Jahre 799.",
                                      "")));
 
-                var mariensaeuleImage = CreateImage ("", "Die Mariensäule", "mariensaeule_teaser.jpg");
+                
                 var mariensaeuleteaserImage = CreateImage("", "Die Mariensäule", "mariensaeule_teaser1.jpg");
                 Exhibit mariensaeule = CreateExhibit ("Die Mariensäule", "", 51.716724, 8.752244000000019,
                                                       new[] {"Kirch"}, new[] {"Dom"}, mariensaeuleteaserImage);
                 mariensaeule.Pages.Add (CreateAppetizerPage ("Startpunkt der Rundgänge: Hl. Liborius, Karl der Große, Meinwerk von Paderborn.",
-                                                             mariensaeuleImage));
+                                                             mariensaeuleteaserImage));
+                
                 karlsrouteSet.ActiveSet.Add (mariensaeule);
 
                 var paderquellen1TeaserImage = CreateImage ("", "Paderbrunnon, Patresbrun, Paderbrunno", "quellen1_teaser1.jpg");
-                var paderquellen1Image = CreateImage("", "Paderbrunnon, Patresbrun, Paderbrunno", "quellen1_teaser.jpg");
                 Exhibit paderquellen1 = CreateExhibit ("Paderbrunnon, Patresbrun, Paderbrunno", "", 51.71861412677083, 8.75122457742691,
                                                        new[] {"Kirche"}, new[] {"Dom"}, paderquellen1TeaserImage);
                 paderquellen1.Pages.Add (CreateAppetizerPage ("Die Siedlung an den 200 Quellen. Woher kommt eigentlich der Name Paderborn?",
-                                                              paderquellen1Image));
+                                                              paderquellen1TeaserImage));
                 karlsrouteSet.ActiveSet.Add (paderquellen1);
 
                 var paderquellen2TeaserImage = CreateImage ("", "Leben am Wasser", "quellen2_teaser2.jpg");
-                var paderquellen2Image = CreateImage("", "Leben am Wasser", "quellen2_teaser.jpg");
                 Exhibit paderquellen2 = CreateExhibit ("Leben am Wasser", "", 51.718811867802174, 8.751070350408554,
                                                        new[] {"Kirche"}, new[] {"Dom"}, paderquellen2TeaserImage);
            
                 paderquellen2.Pages.Add (CreateAppetizerPage ("Paderborn – so schön wie das Land, in dem Milch und Honig fließen?",
-                                                              paderquellen2Image));
+                                                              paderquellen2TeaserImage));
                 karlsrouteSet.ActiveSet.Add (paderquellen2);
 
                 var paderquellen3TeaserImage = CreateImage ("", "Taufen an der Pader?", "quellen3_teaser3.jpg");
-                var paderquellen3Image = CreateImage("", "Taufen an der Pader?", "quellen3_teaser.jpg");
                 Exhibit paderquellen3 = CreateExhibit ("Taufen an der Pader?", "", 51.71955795852887, 8.751071691513062,
                                                        new[] {"Kirche"}, new[] {"Dom"}, paderquellen3TeaserImage);
-                paderquellen3.Pages.Add (CreateAppetizerPage ("Donar, Wotan und Saxnot – die Abkehr von den alten Göttern.", paderquellen3Image));
+                paderquellen3.Pages.Add (CreateAppetizerPage ("Donar, Wotan und Saxnot – die Abkehr von den alten Göttern.", paderquellen3TeaserImage));
                 karlsrouteSet.ActiveSet.Add (paderquellen3);
 
-                var brueckehausteaserImage = CreateImage ("", "Sachsenkriege", "bruecke_teaser1.jpg");
-                var brueckehausImage = CreateImage("", "Sachsenkriege", "bruecke_teaser.jpg");
+                var brueckehausTeaserImage = CreateImage ("", "Sachsenkriege", "bruecke_teaser1.jpg");
                 Exhibit brueckeBrauhaus = CreateExhibit ("Sachsenkriege", "", 51.719582883396335, 8.751005977392197,
-                                                         new[] {"Kirche"}, new[] {"Dom"}, brueckehausteaserImage);
+                                                         new[] {"Kirche"}, new[] {"Dom"}, brueckehausTeaserImage);
                 brueckeBrauhaus.Pages.Add (CreateAppetizerPage ("Karl der Große und die Sachsen – dreißig Jahre Krieg!",
-                                                                brueckehausImage));
+                                                                brueckehausTeaserImage));
                 karlsrouteSet.ActiveSet.Add (brueckeBrauhaus);
 
-                var geisselscherGartenteaserImage = CreateImage ("", "Christianisierung der Sachsen", "garten_teaser1.jpg");
-                var geisselscherGartenImage = CreateImage("", "Christianisierung der Sachsen", "garten_teaser.jpg");
+                var geisselscherGartenTeaserImage = CreateImage ("", "Christianisierung der Sachsen", "garten_teaser1.jpg");
                 Exhibit geisselscherGarten = CreateExhibit ("Christianisierung der Sachsen", "", 51.72050841708062, 8.75171273946762,
-                                                            new[] {"Kirche"}, new[] {"Dom"}, geisselscherGartenteaserImage);
+                                                            new[] {"Kirche"}, new[] {"Dom"}, geisselscherGartenTeaserImage);
                 geisselscherGarten.Pages.Add (CreateAppetizerPage ("Karls neue Strategie: Tod oder Taufe?",
-                                                                   geisselscherGartenImage));
+                                                                   geisselscherGartenTeaserImage));
                 karlsrouteSet.ActiveSet.Add (geisselscherGarten);
 
-                var stadtbilbiothekteaserImage = CreateImage ("", "Karls Sieg über die Sachsen", "bibliothek_teaser1.jpg");
-                var stadtbilbiothekImage = CreateImage("", "Karls Sieg über die Sachsen", "bibliothek_teaser.jpg");
+                var stadtbilbiothekTeaserImage = CreateImage ("", "Karls Sieg über die Sachsen", "bibliothek_teaser1.jpg");
                 Exhibit stadtbibliothek = CreateExhibit ("Karls Sieg über die Sachsen", "", 51.718953, 8.75583,
-                                                         new[] {"Kirche"}, new[] {"Dom"}, stadtbilbiothekteaserImage);
+                                                         new[] {"Kirche"}, new[] {"Dom"}, stadtbilbiothekTeaserImage);
                 stadtbibliothek.Pages.Add (CreateAppetizerPage ("Sachsen wird Teil des Frankenreiches.",
-                                                                stadtbilbiothekImage));
+                                                                stadtbilbiothekTeaserImage));
                 karlsrouteSet.ActiveSet.Add (stadtbibliothek);
 
-                var domteaserImage = CreateImage ("", "Karl der Große im Wandel der Zeit", "dom_teaser1.jpg");
-                var domImage = CreateImage("", "Karl der Große im Wandel der Zeit", "dom_teaser.jpg");
+                var domTeaserImage = CreateImage ("", "Karl der Große im Wandel der Zeit", "dom_teaser1.jpg");
                 Exhibit dom = CreateExhibit ("Karl der Große im Wandel der Zeit", "", 51.7199006, 8.754952000000003,
-                                             new[] {"Kirche"}, new[] {"Dom"}, domteaserImage);
+                                             new[] {"Kirche"}, new[] {"Dom"}, domTeaserImage);
                 dom.Pages.Add (CreateAppetizerPage ("Der Blick auf Karl den Großen: Christ, Frankenkönig, Imperator, Heiliger.",
-                                                    domImage));
+                                                    domTeaserImage));
                 karlsrouteSet.ActiveSet.Add (dom);
 
                 var theoTeaserImage = CreateImage ("", "Karl der Große macht Schule!", "theo_teaser1.jpg");
-                var theoImage = CreateImage("", "Karl der Große macht Schule!", "theo_teaser.jpg");
                 Exhibit theodoranium = CreateExhibit ("Karl der Große macht Schule!", "", 51.71601, 8.754249999999956,
                                                       new[] {"Kirche"}, new[] {"Dom"}, theoTeaserImage);
                 theodoranium.Pages.Add (CreateAppetizerPage ("Was hat Karl der Große mit Schule, Schrift und Bildung zu tun?",
-                                                             theoImage));
+                                                             theoTeaserImage));
 
                 karlsrouteSet.ActiveSet.Add (theodoranium);
 
