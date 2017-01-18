@@ -93,10 +93,10 @@
     <EmbeddedResource Include="Content\Kaiserpfalz\abdinghof_highlighted.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Content\Kaiserpfalz\bibliothek_teaser.jpg" />
+    <EmbeddedResource Include="Content\Kaiserpfalz\bibliothek_teaser1.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Content\Kaiserpfalz\bruecke_teaser.jpg" />
+    <EmbeddedResource Include="Content\Kaiserpfalz\bruecke_teaser1.jpg" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Content\Kaiserpfalz\busdorfkirche_aussen.jpg" />
@@ -108,10 +108,10 @@
     <EmbeddedResource Include="Content\Kaiserpfalz\dom.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Content\Kaiserpfalz\dom_teaser.jpg" />
+    <EmbeddedResource Include="Content\Kaiserpfalz\dom_teaser1.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Content\Kaiserpfalz\garten_teaser.jpg" />
+    <EmbeddedResource Include="Content\Kaiserpfalz\garten_teaser1.jpg" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_image_2.jpg" />
@@ -162,7 +162,7 @@
     <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_slider_7_3.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_teaser.jpg" />
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_teaser1.jpg" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Content\Kaiserpfalz\karlsschule.jpg" />
@@ -171,19 +171,19 @@
     <EmbeddedResource Include="Content\Kaiserpfalz\liboriuskapelle.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Content\Kaiserpfalz\mariensaeule_teaser.jpg" />
+    <EmbeddedResource Include="Content\Kaiserpfalz\mariensaeule_teaser1.jpg" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Content\Kaiserpfalz\pfalz.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Content\Kaiserpfalz\quellen1_teaser.jpg" />
+    <EmbeddedResource Include="Content\Kaiserpfalz\quellen1_teaser1.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Content\Kaiserpfalz\quellen2_teaser.jpg" />
+    <EmbeddedResource Include="Content\Kaiserpfalz\quellen2_teaser2.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Content\Kaiserpfalz\quellen3_teaser.jpg" />
+    <EmbeddedResource Include="Content\Kaiserpfalz\quellen3_teaser3.jpg" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Content\Kaiserpfalz\route_karl.jpg" />
@@ -234,12 +234,23 @@
     <EmbeddedResource Include="Content\Kaiserpfalz\sprechertext_8.mp3" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Content\Kaiserpfalz\theo_teaser.jpg" />
+    <EmbeddedResource Include="Content\Kaiserpfalz\theo_teaser1.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\bibliothek_teaser.jpg" />
+    <EmbeddedResource Include="Content\Kaiserpfalz\bruecke_teaser.jpg" />
+    <EmbeddedResource Include="Content\Kaiserpfalz\dom_teaser.jpg" />
+    <EmbeddedResource Include="Content\Kaiserpfalz\garten_teaser.jpg" />
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_teaser.jpg" />
+    <EmbeddedResource Include="Content\Kaiserpfalz\quellen1_teaser.jpg" />
+    <EmbeddedResource Include="Content\Kaiserpfalz\quellen2_teaser.jpg" />
+    <EmbeddedResource Include="Content\Kaiserpfalz\quellen3_teaser.jpg" />
+    <EmbeddedResource Include="Content\Kaiserpfalz\theo_teaser.jpg" />
+    <EmbeddedResource Include="Content\Kaiserpfalz\mariensaeule_teaser.jpg" />
     <Content Include="FodyWeavers.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Content\Kaiserpfalz\quellen3_teaser.gif" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DotNetCross.Memory.Unsafe, Version=0.2.2.0, Culture=neutral, processorArchitecture=MSIL">
